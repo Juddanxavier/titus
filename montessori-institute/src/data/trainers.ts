@@ -1,0 +1,48 @@
+import type { Trainer } from "../types";
+
+export const trainers: Trainer[] = [
+  {
+    id: "1",
+    name: "[Trainer name]",
+    role: "Lead trainer",
+    qualification: "[Qualification — editable]",
+    yearsExperience: "[X] years",
+    specialty: "Early childhood practice",
+    bio: "Placeholder profile. Replace with verified trainer biography before launch.",
+    imageSrc: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Trainer demonstrating a Montessori classroom activity",
+  },
+  {
+    id: "2",
+    name: "[Trainer name]",
+    role: "Senior trainer",
+    qualification: "[Qualification — editable]",
+    yearsExperience: "[X] years",
+    specialty: "Sensorial and mathematics",
+    bio: "Placeholder profile. Replace with verified trainer biography before launch.",
+    imageSrc: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Trainer guiding adult trainees with learning materials",
+  },
+  {
+    id: "3",
+    name: "[Trainer name]",
+    role: "Trainer",
+    qualification: "[Qualification — editable]",
+    yearsExperience: "[X] years",
+    specialty: "Observation and practice",
+    bio: "Placeholder profile. Replace with verified trainer biography before launch.",
+    imageSrc: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Trainer leading a discussion in a teacher-training classroom",
+  },
+  {
+    id: "4",
+    name: "[Trainer name]",
+    role: "Trainer",
+    qualification: "[Qualification — editable]",
+    yearsExperience: "[X] years",
+    specialty: "Practical life and language",
+    bio: "Placeholder profile. Replace with verified trainer biography before launch.",
+    imageSrc: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Trainer supporting trainees during a material presentation",
+  },
+];

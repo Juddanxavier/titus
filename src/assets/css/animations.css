@@ -1,0 +1,242 @@
+/* ── Scroll reveal ───────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal--up    { transform: translateY(20px); }
+.reveal--down  { transform: translateY(-14px); }
+.reveal--left  { transform: translateX(-20px); }
+.reveal--right { transform: translateX(20px); }
+.reveal--fade  { transform: none; }
+.reveal--scale { transform: scale(0.98); }
+
+.reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Hero entrance (page load) ───────────────────────── */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-hero-1 { animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+.animate-hero-2 { animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+.animate-hero-3 { animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both; }
+.animate-hero-4 { animation: hero-fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both; }
+
+/* ── Page route transition ───────────────────────────── */
+.page-enter-active {
+  animation: hero-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-leave-active {
+  animation: hero-fade-up 0.2s cubic-bezier(0.22, 1, 0.36, 1) reverse both;
+}
+
+/* ── Card hover lift ─────────────────────────────────── */
+.card-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
+/* ── Button micro-interactions ───────────────────────── */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn--primary:hover {
+  box-shadow: none;
+}
+
+.btn--gold:hover,
+.btn--accent:hover {
+  box-shadow: none;
+}
+
+.btn--outline:hover {
+  box-shadow: none;
+}
+
+/* ── Nav link underline slide ────────────────────────── */
+.nav-link-animated {
+  position: relative;
+  text-decoration: none !important;
+}
+
+.nav-link-animated::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link-animated:hover::after,
+.nav-link-animated.router-link-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Badge pop ───────────────────────────────────────── */
+.badge {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card-lift:hover .badge {
+  transform: scale(1.03);
+}
+
+/* ── FAQ accordion smooth ────────────────────────────── */
+.faq-item {
+  transition: background 0.2s ease;
+}
+
+.faq-item[open] {
+  background: rgba(243, 239, 232, 0.9);
+  border-radius: var(--input-radius);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.faq-item__question::after {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-item[open] .faq-item__question::after {
+  transform: rotate(45deg);
+}
+
+/* ── Module accordion ────────────────────────────────── */
+.module-item {
+  transition: box-shadow 0.3s ease;
+}
+
+.module-item[open] {
+  box-shadow: none;
+}
+
+/* ── Image frame hover ───────────────────────────────── */
+.img-frame {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.img-frame:hover {
+  transform: scale(1.01);
+  box-shadow: none;
+}
+
+/* ── Stagger children helper ─────────────────────────── */
+.stagger-children > .reveal:nth-child(1) { transition-delay: 0ms; }
+.stagger-children > .reveal:nth-child(2) { transition-delay: 60ms; }
+.stagger-children > .reveal:nth-child(3) { transition-delay: 120ms; }
+.stagger-children > .reveal:nth-child(4) { transition-delay: 180ms; }
+.stagger-children > .reveal:nth-child(5) { transition-delay: 240ms; }
+.stagger-children > .reveal:nth-child(6) { transition-delay: 300ms; }
+
+/* ── Counter tick ────────────────────────────────────── */
+@keyframes count-pop {
+  0%   { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.count-animate {
+  animation: count-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── CTA banner glow ─────────────────────────────────── */
+.cta-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── Reduced motion ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-hero-1,
+  .animate-hero-2,
+  .animate-hero-3,
+  .animate-hero-4,
+  .count-animate,
+  .page-enter-active,
+  .page-loader__logo,
+  .page-loader__ring,
+  .page-loader__bar,
+  .hero__bg-image {
+    animation: none;
+  }
+
+  .page-loader-enter-active,
+  .page-loader-leave-active {
+    transition: none;
+  }
+
+  .card-lift:hover,
+  .img-frame:hover,
+  .btn:active {
+    transform: none;
+  }
+
+  .cta-glow::before {
+    animation: none;
+  }
+}
