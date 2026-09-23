@@ -18,9 +18,16 @@ import { siteConfig } from "@/data/site";
 
 <style scoped>
 .announcement {
+  display: none;
   background: linear-gradient(90deg, var(--palette-purple-950) 0%, var(--palette-purple-900) 100%);
   color: rgba(255, 255, 255, 0.92);
   font-size: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .announcement {
+    display: block;
+  }
 }
 
 .announcement__inner {

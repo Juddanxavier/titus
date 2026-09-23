@@ -400,9 +400,75 @@ const approachItems = [
   background: var(--color-bg);
 }
 
+@media (max-width: 767px) {
+  .hero {
+    min-height: auto;
+    align-items: stretch;
+  }
+
+  .hero__overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(253, 251, 255, 0.97) 0%,
+        rgba(253, 251, 255, 0.94) 45%,
+        rgba(253, 251, 255, 0.9) 100%
+      );
+  }
+
+  .hero__content {
+    padding: calc(4.5rem + env(safe-area-inset-top, 0px)) 0 2rem;
+  }
+
+  .hero__main {
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .hero__eyebrow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    max-width: 100%;
+    font-size: 0.6875rem;
+  }
+
+  .hero__eyebrow-sep {
+    display: none;
+  }
+
+  .hero__headline {
+    margin-top: 1rem;
+    font-size: clamp(1.875rem, 8.2vw, 2.65rem);
+    line-height: 1.06;
+  }
+
+  .hero__sub {
+    margin-top: 0.875rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .hero__card--main {
+    padding: 1.25rem 1.35rem;
+    max-width: none;
+  }
+
+  .hero__highlights li {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0;
+  }
+
+  .hero__orb--1,
+  .hero__orb--3 {
+    opacity: 0.65;
+  }
+}
+
 @media (min-width: 768px) {
   .hero {
     min-height: min(92vh, 820px);
+    align-items: flex-end;
   }
 }
 
@@ -502,7 +568,13 @@ const approachItems = [
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: clamp(5rem, 14vh, 7rem) 0 clamp(2.5rem, 5vw, 3rem);
+  padding: clamp(4.5rem, 12vh, 7rem) 0 clamp(2.5rem, 5vw, 3rem);
+}
+
+@media (min-width: 768px) {
+  .hero__content {
+    padding-top: clamp(5rem, 14vh, 7rem);
+  }
 }
 
 .hero__main {
