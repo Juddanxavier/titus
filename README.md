@@ -24,6 +24,24 @@ This is the **canonical** project. All pages, forms, and content live here — n
 
 Forms submit to `api/apply.php`, `api/contact.php`, and `api/brochure.php`.
 
+## Maintenance mode
+
+**Currently enabled for production** (`public/maintenance.flag` + `VITE_MAINTENANCE_MODE=true` in `.env.production`).
+
+| Layer | Behaviour |
+|--------|-----------|
+| **Apache** | If `maintenance.flag` exists in the web root, visitors get `maintenance.html` (logo + phone/WhatsApp). |
+| **Vue build** | Production builds only register the maintenance screen (no full site shell). |
+| **PHP forms** | `api/*.php` return HTTP 503 JSON while the flag file is present. |
+
+**Go live again:**
+
+1. Delete `public/maintenance.flag` (or remove it on the server after deploy).
+2. Set `VITE_MAINTENANCE_MODE=false` in `.env.production`.
+3. Run `npm run build` and deploy `dist/`.
+
+Local dev stays normal (`VITE_MAINTENANCE_MODE=false` in `.env.development`).
+
 ## Deploy with GitHub Actions (CI + SSH)
 
 Pushes to **`main`** run `npm ci`, `npm run build`, and **rsync `dist/`** to your server over SSH.

@@ -3,6 +3,16 @@ declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
 
+if (is_file(__DIR__ . '/../maintenance.flag')) {
+    http_response_code(503);
+    header('Retry-After: 3600');
+    echo json_encode([
+        'success' => false,
+        'message' => 'The site is under maintenance. Please try again later or contact admissions by phone.',
+    ]);
+    exit;
+}
+
 define('UPLOAD_DIR', __DIR__ . '/../storage/uploads');
 define('MAX_FILE_SIZE', 5 * 1024 * 1024);
 

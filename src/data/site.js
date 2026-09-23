@@ -13,6 +13,11 @@ export const siteConfig = {
   },
   tagline:
     'On-campus teacher training — certificates, diplomas, and advance diplomas',
+  maintenance: {
+    title: "We'll be back soon",
+    message:
+      'Our website is being updated. Admissions is still available by phone or WhatsApp.',
+  },
   announcement: {
     urgency: `New batch forming — ${nextBatch} · Limited seats per programme`,
     tagline:
