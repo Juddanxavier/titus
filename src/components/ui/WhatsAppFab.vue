@@ -17,8 +17,8 @@ import { siteConfig } from "@/data/site";
 <style scoped>
 .wa-fab {
   position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
   z-index: 60;
   display: flex;
   align-items: center;

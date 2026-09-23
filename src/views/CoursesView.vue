@@ -25,7 +25,7 @@
         </div>
 
         <div class="courses-toolbar">
-          <div class="courses-toolbar__filters" role="tablist" aria-label="Filter by pathway">
+          <div class="courses-toolbar__filters scroll-x" role="tablist" aria-label="Filter by pathway">
             <button
               type="button"
               role="tab"
@@ -247,8 +247,20 @@ watch(
 
 .courses-toolbar__filters {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .courses-toolbar__filters {
+    flex-wrap: wrap;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .courses-filter {

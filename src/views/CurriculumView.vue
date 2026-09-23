@@ -33,7 +33,7 @@
           </dl>
         </div>
 
-        <nav class="curriculum-nav" aria-label="Curriculum parts">
+        <nav class="curriculum-nav scroll-x" aria-label="Curriculum parts">
           <a
             v-for="part in curriculumParts"
             :key="part.id"
@@ -176,10 +176,25 @@ const syllabusPoints = [
 
 .curriculum-hero__stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(5.5rem, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.65rem;
   margin: 0;
   flex-shrink: 0;
+  width: 100%;
+}
+
+.curriculum-hero__stats div:last-child {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 520px) {
+  .curriculum-hero__stats {
+    grid-template-columns: repeat(3, minmax(5.5rem, 1fr));
+  }
+
+  .curriculum-hero__stats div:last-child {
+    grid-column: auto;
+  }
 }
 
 .curriculum-hero__stats div {
@@ -214,12 +229,24 @@ const syllabusPoints = [
 
 .curriculum-nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   margin-top: 1.25rem;
+  padding-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .curriculum-nav {
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .curriculum-nav__pill {
+  flex-shrink: 0;
   display: inline-flex;
   flex-direction: column;
   gap: 0.1rem;

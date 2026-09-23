@@ -50,7 +50,7 @@ const { containerRef, imageStyle } = useParallax({
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: clamp(4.5rem, 12vw, 6.5rem) 0 clamp(3.5rem, 8vw, 5rem);
+  padding: clamp(3.25rem, 10vw, 6.5rem) 0 clamp(2.5rem, 7vw, 5rem);
   color: rgba(255, 255, 255, 0.92);
 }
 
@@ -103,10 +103,17 @@ const { containerRef, imageStyle } = useParallax({
 }
 
 .page-header p {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   max-width: 40rem;
-  font-size: 1.125rem;
+  font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
   color: rgba(255, 255, 255, 0.72);
-  line-height: 1.75;
+  line-height: 1.65;
+}
+
+@media (min-width: 768px) {
+  .page-header p {
+    margin-top: 1.5rem;
+    line-height: 1.75;
+  }
 }
 </style>

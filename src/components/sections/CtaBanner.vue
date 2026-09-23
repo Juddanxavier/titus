@@ -70,7 +70,7 @@ defineProps({
 .pre-footer-cta {
   position: relative;
   overflow: hidden;
-  padding: clamp(3.25rem, 7vw, 4.75rem) 0;
+  padding: clamp(2.5rem, 6vw, 4.75rem) 0;
   background: linear-gradient(
     128deg,
     var(--palette-purple-950) 0%,
@@ -214,12 +214,18 @@ defineProps({
 }
 
 .pre-footer-cta__panel {
-  padding: 1.65rem 1.75rem;
+  padding: 1.35rem 1.25rem;
   background: rgba(255, 255, 255, 0.97);
   border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow:
     0 24px 48px rgba(14, 6, 28, 0.35),
     0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+
+@media (min-width: 640px) {
+  .pre-footer-cta__panel {
+    padding: 1.65rem 1.75rem;
+  }
 }
 
 .pre-footer-cta__panel-label {

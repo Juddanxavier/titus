@@ -1,0 +1,104 @@
+/**
+ * Mobile-first responsive baseline (default = small screens; min-width = larger).
+ */
+
+:root {
+  --section-y: clamp(2.75rem, 6vw, 6.5rem);
+  --container-pad: 1rem;
+  --nav-break: 1180px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --container-pad: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: 1.75rem;
+  }
+}
+
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+}
+
+#main-content {
+  overflow-x: clip;
+}
+
+.container {
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Readable line length on small screens */
+.section-intro,
+.prose {
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  .section-title {
+    font-size: clamp(1.625rem, 7vw, 2rem);
+  }
+
+  .section-intro {
+    font-size: 1rem;
+  }
+
+  .btn--lg {
+    width: 100%;
+  }
+
+  .btn--block {
+    width: 100%;
+  }
+}
+
+/* Tables in prose (admissions etc.) */
+.prose .data-table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Horizontal scroll regions (use class on wrapper) */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  margin-left: calc(-1 * var(--container-pad));
+  margin-right: calc(-1 * var(--container-pad));
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+.scroll-x > * {
+  min-width: min-content;
+}
+
+body.nav-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-x {
+    scroll-snap-type: x proximity;
+  }
+}

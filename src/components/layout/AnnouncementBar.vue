@@ -41,10 +41,12 @@ import { siteConfig } from "@/data/site";
 
 .announcement__urgency {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   margin: 0;
   font-weight: 600;
+  line-height: 1.45;
+  font-size: clamp(0.6875rem, 2.8vw, 0.75rem);
 }
 
 .announcement__dot {
@@ -60,7 +62,17 @@ import { siteConfig } from "@/data/site";
   font-size: 0.75rem;
   font-weight: 700;
   text-decoration: none;
-  white-space: nowrap;
+  align-self: flex-start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .announcement__link {
+    white-space: nowrap;
+    min-height: auto;
+  }
 }
 
 .announcement__link:hover {

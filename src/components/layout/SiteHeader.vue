@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 import { siteConfig } from "@/data/site";
 
 const mobileOpen = ref(false);
@@ -77,12 +77,20 @@ function onScroll() {
 }
 
 onMounted(() => window.addEventListener("scroll", onScroll, { passive: true }));
-onUnmounted(() => window.removeEventListener("scroll", onScroll));
+onUnmounted(() => {
+  window.removeEventListener("scroll", onScroll);
+  document.body.classList.remove("nav-open");
+});
+
+watch(mobileOpen, (open) => {
+  document.body.classList.toggle("nav-open", open);
+});
 
 const navLinks = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/courses", label: "Courses" },
+  { to: "/curriculum", label: "Curriculum" },
   { to: "/admissions", label: "Admissions" },
   { to: "/contact", label: "Contact" },
 ];
@@ -113,7 +121,7 @@ const navLinks = [
   min-height: 4rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .header__inner {
     min-height: 4.25rem;
     display: grid;
@@ -147,17 +155,29 @@ const navLinks = [
   gap: 0.25rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .header__nav {
     display: flex;
     justify-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
 .header__link {
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8125rem;
+}
+
+@media (min-width: 1280px) {
+  .header__link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+.header__link {
   border-radius: var(--radius-sm);
-  font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-muted);
   text-decoration: none;
@@ -194,15 +214,18 @@ const navLinks = [
 
 .header__cta {
   display: none;
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
+  font-size: 0.8125rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 480px) {
   .header__cta {
     display: inline-flex;
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .header__phone {
     display: block;
   }
@@ -222,7 +245,7 @@ const navLinks = [
   cursor: pointer;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .header__toggle {
     display: none;
   }
@@ -241,10 +264,13 @@ const navLinks = [
   border-top: 1px solid var(--color-border);
   background: var(--color-white);
   padding: 0.75rem 0 1.25rem;
+  max-height: calc(100dvh - 3.5rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   animation: hero-fade-up 0.25s var(--ease-out-expo) both;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .header__mobile {
     display: none;
   }

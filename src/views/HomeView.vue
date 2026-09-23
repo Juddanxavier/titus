@@ -393,11 +393,17 @@ const approachItems = [
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: min(92vh, 820px);
+  min-height: min(88vh, 820px);
   display: flex;
   align-items: flex-end;
   color: var(--color-ink);
   background: var(--color-bg);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: min(92vh, 820px);
+  }
 }
 
 .hero__bg {
@@ -457,8 +463,8 @@ const approachItems = [
 }
 
 .hero__orb--1 {
-  width: 420px;
-  height: 420px;
+  width: min(420px, 70vw);
+  height: min(420px, 70vw);
   top: -8%;
   left: -5%;
   background: radial-gradient(
@@ -469,8 +475,8 @@ const approachItems = [
 }
 
 .hero__orb--2 {
-  width: 350px;
-  height: 350px;
+  width: min(350px, 55vw);
+  height: min(350px, 55vw);
   bottom: 10%;
   right: 15%;
   background: radial-gradient(
@@ -481,8 +487,8 @@ const approachItems = [
 }
 
 .hero__orb--3 {
-  width: 280px;
-  height: 280px;
+  width: min(280px, 45vw);
+  height: min(280px, 45vw);
   top: 30%;
   right: -3%;
   background: radial-gradient(
@@ -603,10 +609,24 @@ const approachItems = [
 
 .hero__actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1rem;
-  margin-top: 2rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.65rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 480px) {
+  .hero__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .hero__actions .btn--lg {
+    width: auto;
+  }
 }
 
 .hero__link {
@@ -741,27 +761,41 @@ const approachItems = [
 
 .hero__stat-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 1px;
-  margin-top: clamp(2.5rem, 4vw, 3rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
   background: rgba(90, 24, 154, 0.08);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
+@media (min-width: 520px) {
+  .hero__stat-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .hero__stat {
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.15rem;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-.hero__stat:first-child {
-  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+@media (min-width: 768px) {
+  .hero__stat {
+    padding: 1.25rem 1.5rem;
+  }
 }
 
-.hero__stat:last-child {
-  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+@media (min-width: 520px) {
+  .hero__stat:first-child {
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  }
+
+  .hero__stat:last-child {
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
 }
 
 .hero__stat-value {
