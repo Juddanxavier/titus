@@ -35,7 +35,7 @@ const contact = siteConfig.contact;
 }
 .contact-methods__item { padding: 1.5rem; }
 .contact-methods__item h3 {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;

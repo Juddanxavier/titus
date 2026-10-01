@@ -347,7 +347,7 @@ input[type="file"] { max-width: 100%; }
 }
 .review { padding: 1.5rem; margin-bottom: 1.5rem; }
 .review h3 {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1rem;

@@ -84,7 +84,7 @@ async function submit() {
   .contact-form { padding: 1.25rem; }
 }
 .contact-form h2 {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
