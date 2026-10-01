@@ -31,7 +31,7 @@
             <div><dt>Fees</dt><dd>{{ course.fees.currency }} {{ course.fees.amount }}</dd></div>
           </dl>
           <a
-            v-if="course.syllabusPdf"
+            v-if="siteConfig.features.syllabusDownload && course.syllabusPdf"
             :href="course.syllabusPdf"
             class="btn btn--outline btn--block"
             download
@@ -52,9 +52,13 @@
           <ul><li v-for="item in course.learningOutcomes" :key="item">{{ item }}</li></ul>
 
           <h2>Syllabus</h2>
-          <p>
+          <p v-if="siteConfig.features.syllabusDownload && course.syllabusPdf">
             Full programme content is in the official syllabus.
-            <a v-if="course.syllabusPdf" :href="course.syllabusPdf" download>Download syllabus</a>
+            <a :href="course.syllabusPdf" download>Download syllabus</a>
+          </p>
+          <p v-else>
+            Full programme content is in the official syllabus — contact
+            admissions for a copy.
           </p>
 
           <h2 v-if="courseModules.length">Curriculum modules</h2>
@@ -98,6 +102,7 @@ import { useRoute } from "vue-router";
 import { getCourseBySlug } from "@/data/courses";
 import { curriculumModules } from "@/data/curriculum";
 import PageHeader from "@/components/layout/PageHeader.vue";
+import { siteConfig } from "@/data/site";
 import { images } from "@/data/images";
 import ModuleList from "@/components/sections/ModuleList.vue";
 import FaqList from "@/components/sections/FaqList.vue";

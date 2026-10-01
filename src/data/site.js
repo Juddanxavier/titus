@@ -13,6 +13,10 @@ export const siteConfig = {
   },
   tagline:
     'On-campus teacher training — certificates, diplomas, and advance diplomas',
+  features: {
+    // Master switch for every "Download syllabus" link (cards + course page).
+    syllabusDownload: false,
+  },
   maintenance: {
     title: "We'll be back soon",
     message:

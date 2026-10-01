@@ -53,7 +53,7 @@
       </RouterLink>
       <div class="course-card__secondary">
         <a
-          v-if="course.syllabusPdf"
+          v-if="siteConfig.features.syllabusDownload && course.syllabusPdf"
           :href="course.syllabusPdf"
           class="course-card__syllabus"
           target="_blank"
@@ -76,6 +76,7 @@
 <script setup>
 import { computed } from "vue";
 import { courseCategories } from "@/data/programmes";
+import { siteConfig } from "@/data/site";
 
 const props = defineProps({
   course: { type: Object, required: true },
@@ -337,7 +338,7 @@ const categoryShort = computed(() => {
 .course-card__secondary {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0.75rem;
   font-size: 0.8125rem;
   font-weight: 700;
@@ -362,6 +363,7 @@ const categoryShort = computed(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  margin-left: auto;
   color: var(--palette-orange-600);
   text-decoration: none;
 }

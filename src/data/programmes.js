@@ -77,7 +77,7 @@ const shared = {
     {
       question: "Where can I read the full syllabus?",
       answer:
-        "Download the syllabus from the course page or the courses listing on our website.",
+        "Contact admissions by phone, WhatsApp, or the contact form and we will share the official syllabus for the programme you are interested in.",
     },
   ],
 };
