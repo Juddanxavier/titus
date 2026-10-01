@@ -1,6 +1,6 @@
 import { ref, nextTick } from "vue";
 
-/** Global page-loading state (initial visit + route changes). */
+/** Global page-loading state — shown once on the initial visit only. */
 export const isPageLoading = ref(true);
 
 let hideTimer;
@@ -38,15 +38,6 @@ export function initPageLoading(router) {
     scheduleHide(prefersReduced() ? 0 : 720);
   });
 
-  router.beforeEach((to, from) => {
-    if (from.name) {
-      clearTimeout(hideTimer);
-      isPageLoading.value = !prefersReduced();
-    }
-  });
-
-  router.afterEach(async () => {
-    await nextTick();
-    scheduleHide(prefersReduced() ? 0 : 380);
-  });
+  // Route changes intentionally do NOT re-trigger the loader:
+  // the overlay animates only when the site is first opened.
 }
