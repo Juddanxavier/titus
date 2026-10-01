@@ -1,89 +1,114 @@
 <template>
-  <div class="announcement" role="region" aria-label="Batch announcement">
-    <div class="container announcement__inner">
-      <p class="announcement__urgency">
-        <span class="announcement__dot" aria-hidden="true" />
-        {{ siteConfig.announcement.urgency }}
-      </p>
-      <RouterLink :to="siteConfig.announcement.ctaHref" class="announcement__link">
-        Enroll now
-      </RouterLink>
+  <div class="announcement" role="region" aria-label="Announcements">
+    <div class="announcement__track">
+      <!-- First copy is decorative (duplicate for the seamless loop) -->
+      <div
+        v-for="copy in 2"
+        :key="copy"
+        class="announcement__group"
+        :aria-hidden="copy === 1 ? 'true' : 'false'"
+      >
+        <template v-for="(item, i) in items" :key="i">
+          <span class="announcement__item">{{ item }}</span>
+          <span class="announcement__sep" aria-hidden="true">✦</span>
+        </template>
+        <RouterLink
+          :to="siteConfig.announcement.ctaHref"
+          class="announcement__link"
+          :tabindex="copy === 1 ? -1 : undefined"
+        >
+          Enroll now
+        </RouterLink>
+        <span class="announcement__sep" aria-hidden="true">✦</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { siteConfig } from "@/data/site";
+
+const announcement = siteConfig.announcement;
+const items = computed(() =>
+  [announcement.urgency, announcement.tagline, announcement.message].filter(Boolean)
+);
 </script>
 
 <style scoped>
 .announcement {
-  display: none;
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(90deg, var(--palette-purple-950) 0%, var(--palette-purple-900) 100%);
   color: rgba(255, 255, 255, 0.92);
   font-size: 0.75rem;
 }
 
-@media (min-width: 768px) {
-  .announcement {
-    display: block;
-  }
-}
-
-.announcement__inner {
+/* Two identical groups; the track translates -50% for a seamless loop */
+.announcement__track {
   display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-  padding: 0.5rem 0;
+  width: max-content;
+  animation: announcement-marquee 45s linear infinite;
+  will-change: transform;
 }
 
-@media (min-width: 640px) {
-  .announcement__inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-}
-
-.announcement__urgency {
+.announcement__group {
   display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  margin: 0;
+  align-items: center;
+  gap: 1.25rem;
+  padding-right: 1.25rem;
+  white-space: nowrap;
+}
+
+.announcement__item {
+  padding: 0.7rem 0;
   font-weight: 600;
-  line-height: 1.45;
-  font-size: clamp(0.6875rem, 2.8vw, 0.75rem);
+  letter-spacing: 0.01em;
 }
 
-.announcement__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-accent-bright);
-  flex-shrink: 0;
+.announcement__sep {
+  color: var(--color-accent-bright);
+  font-size: 0.55rem;
+  line-height: 1;
 }
 
 .announcement__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 0;
   color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
   text-decoration: none;
-  align-self: flex-start;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-}
-
-@media (min-width: 640px) {
-  .announcement__link {
-    white-space: nowrap;
-    min-height: auto;
-  }
 }
 
 .announcement__link:hover {
   color: var(--color-accent-light);
   text-decoration: none;
+}
+
+/* Let people pause the ticker to read / click the link */
+.announcement:hover .announcement__track,
+.announcement:focus-within .announcement__track {
+  animation-play-state: paused;
+}
+
+@keyframes announcement-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announcement__track {
+    animation: none;
+  }
+
+  .announcement__group[aria-hidden="true"] {
+    display: none;
+  }
 }
 </style>
