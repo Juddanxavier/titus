@@ -80,6 +80,9 @@ async function submit() {
   .contact-grid { grid-template-columns: 1fr 1fr; }
 }
 .contact-form { padding: 1.5rem; }
+@media (max-width: 480px) {
+  .contact-form { padding: 1.25rem; }
+}
 .contact-form h2 {
   font-family: "Inter", sans-serif;
   font-size: 1.125rem;

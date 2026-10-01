@@ -53,7 +53,7 @@ svg {
 
 @media (max-width: 639px) {
   .section-title {
-    font-size: clamp(1.625rem, 7vw, 2rem);
+    font-size: clamp(1.5rem, 6vw, 1.875rem);
   }
 
   .section-intro {
@@ -95,6 +95,12 @@ svg {
 body.nav-open {
   overflow: hidden;
   touch-action: none;
+}
+
+/* The open mobile menu reserves 100dvh - 4rem for the 4rem header;
+   hide the announcement bar so it can't eat into that space. */
+body.nav-open .announcement {
+  display: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {

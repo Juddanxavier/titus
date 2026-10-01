@@ -32,7 +32,7 @@ export const siteConfig = {
     phone: '+91 95000 96930',
     phoneTel: '+919500096930',
     whatsapp: 'https://wa.me/919500096930',
-    address: '[Street address], [City], [Country]',
+    address: 'No.162, Sundar Nagar, (Opposite to spartankids pre school) poonamallee, Chennai.600056',
     hours: 'Monday to Friday, 9:00 am to 5:00 pm',
     counsellorHours: 'Admissions counselling: 9:00 am – 6:00 pm (editable)',
   },
@@ -50,14 +50,12 @@ export const siteConfig = {
   },
   brochureUrl: '/downloads/course-brochure.pdf',
   hero: {
-    image:
-      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80',
-    imageAlt:
-      'Adult Montessori trainees practising with wooden learning materials',
-    badge: '13 on-campus programmes',
-    title: 'Teacher training',
-    titleHighlight: 'for every',
-    titleSuffix: 'stage of your career',
+    image: '/images/hero.png',
+    imageAlt: 'Montessori teacher training at The Titus Global campus',
+    badge: 'On-campus teacher training',
+    title: 'Become a Montessori',
+    titleHighlight: 'educator',
+    titleSuffix: '',
     subtitle:
       'From 3-month certificates in phonics and daycare management to one-year diplomas and advance diplomas in Montessori, nursery, and primary education — all delivered on campus with a downloadable syllabus for every programme.',
     rating: {

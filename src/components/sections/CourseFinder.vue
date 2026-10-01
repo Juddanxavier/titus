@@ -139,6 +139,13 @@ function restart() {
   padding: 2rem;
 }
 
+@media (max-width: 480px) {
+  .finder {
+    margin-top: 2rem;
+    padding: 1.25rem;
+  }
+}
+
 .finder__progress {
   height: 0.5rem;
   margin-bottom: 1.5rem;

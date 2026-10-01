@@ -125,16 +125,16 @@ const { containerRef, imageStyle } = useParallax({ speed: 0.38, scale: 1.28, max
 }
 
 .impact__glow--1 {
-  width: 420px;
-  height: 420px;
+  width: min(420px, 90vw);
+  height: min(420px, 90vw);
   top: -10%;
   right: 5%;
   background: rgba(255, 109, 0, 0.18);
 }
 
 .impact__glow--2 {
-  width: 320px;
-  height: 320px;
+  width: min(320px, 80vw);
+  height: min(320px, 80vw);
   bottom: -5%;
   left: 10%;
   background: rgba(123, 44, 191, 0.25);
@@ -330,6 +330,19 @@ const { containerRef, imageStyle } = useParallax({ speed: 0.38, scale: 1.28, max
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
+}
+
+@media (max-width: 639px) {
+  .impact__pathway:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (hover: none) {
+  .impact__pathway-hint {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .impact__pathway-link:hover .impact__pathway-hint,

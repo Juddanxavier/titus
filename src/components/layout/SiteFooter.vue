@@ -125,6 +125,13 @@ const linkGroups = [
   border-top: 1px solid rgba(255, 157, 0, 0.2);
 }
 
+/* Keep the last row clear of the fixed WhatsApp FAB (52px + 16px inset) */
+@media (max-width: 639px) {
+  .footer {
+    padding-bottom: 6rem;
+  }
+}
+
 .footer__abstract {
   position: absolute;
   inset: 0;
@@ -291,9 +298,11 @@ const linkGroups = [
   margin: 0;
 }
 
-.footer__links li { margin-bottom: 0.625rem; }
+.footer__links li { margin-bottom: 0.25rem; }
 
 .footer__links a {
+  display: inline-block;
+  padding: 0.3rem 0;
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.62);
   text-decoration: none;
@@ -360,9 +369,12 @@ const linkGroups = [
   }
 }
 
-.footer__social { display: flex; gap: 1.5rem; }
+.footer__social { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
 
 .footer__social a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   color: rgba(255, 255, 255, 0.55);
   font-size: 0.8125rem;
   letter-spacing: 0.04em;

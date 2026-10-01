@@ -264,9 +264,10 @@ const navLinks = [
   border-top: 1px solid var(--color-border);
   background: var(--color-white);
   padding: 0.75rem 0 1.25rem;
-  max-height: calc(100dvh - 3.5rem);
+  max-height: calc(100dvh - 4rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   animation: hero-fade-up 0.25s var(--ease-out-expo) both;
 }
 

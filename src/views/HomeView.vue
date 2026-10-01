@@ -12,42 +12,26 @@
           :style="heroImageStyle"
           loading="eager" />
         <div class="hero__overlay" />
-        <div class="hero__grid-pattern" />
+        <div class="hero__accent-bar" aria-hidden="true" />
       </div>
-
-      <div class="hero__orb hero__orb--1" aria-hidden="true" />
-      <div class="hero__orb hero__orb--2" aria-hidden="true" />
-      <div class="hero__orb hero__orb--3" aria-hidden="true" />
 
       <div class="container hero__content">
         <div class="hero__main">
           <div class="hero__copy">
-            <div class="hero__eyebrow animate-hero-1">
-              <span class="hero__live" aria-hidden="true" />
-              <span>{{ siteConfig.hero.badge }}</span>
-              <span class="hero__eyebrow-sep" aria-hidden="true">·</span>
-              <span class="hero__eyebrow-muted"
-                >Next batch {{ siteConfig.announcement.batchDate }}</span
-              >
+            <div class="hero__eyebrow" data-reveal>
+              <span class="hero__badge">{{ siteConfig.hero.badge }}</span>
+              <span class="hero__eyebrow-sep" aria-hidden="true">/</span>
+              <span class="hero__eyebrow-muted">Next batch {{ siteConfig.announcement.batchDate }}</span>
             </div>
 
-            <h1 class="hero__headline animate-hero-2">
-              <span class="hero__headline-row">{{
-                siteConfig.hero.title
-              }}</span>
-              <span class="hero__headline-row hero__headline-row--accent">{{
-                siteConfig.hero.titleHighlight
-              }}</span>
-              <span class="hero__headline-row">{{
-                siteConfig.hero.titleSuffix
-              }}</span>
+            <h1 class="hero__headline" data-reveal>
+              <span class="hero__headline-row">{{ siteConfig.hero.title }}</span>
+              <span class="hero__headline-row hero__headline-row--highlight">{{ siteConfig.hero.titleHighlight }}</span>
             </h1>
 
-            <p class="hero__sub animate-hero-3">
-              {{ siteConfig.hero.subtitle }}
-            </p>
+            <p class="hero__sub" data-reveal>{{ siteConfig.hero.subtitle }}</p>
 
-            <div class="hero__actions animate-hero-4">
+            <div class="hero__actions" data-reveal>
               <RouterLink
                 :to="siteConfig.hero.primaryCta.to"
                 class="btn btn--primary btn--lg hero__cta-primary">
@@ -59,49 +43,26 @@
                 class="btn btn--outline btn--lg">
                 {{ siteConfig.hero.secondaryCta.label }}
               </RouterLink>
-              <RouterLink to="/brochure" class="hero__link">
-                <span class="hero__link-icon" aria-hidden="true">↓</span>
-                Download brochure
-              </RouterLink>
             </div>
-          </div>
 
-          <div class="hero__visual animate-hero-3">
-            <div class="hero__card hero__card--main">
-              <div class="hero__trust" :title="siteConfig.hero.rating.note">
-                <span class="hero__stars" aria-hidden="true">★★★★★</span>
-                <span class="hero__rating-score">{{
-                  siteConfig.hero.rating.score
-                }}</span>
-                <span class="hero__rating-label">{{
-                  siteConfig.hero.rating.label
-                }}</span>
+            <div class="hero__trust-strip" data-reveal>
+              <div class="hero__trust-item">
+                <div class="hero__trust-badge">
+                  <span class="hero__stars" aria-hidden="true">★★★★★</span>
+                  <span class="hero__rating-score">4.8</span>
+                </div>
+                <span class="hero__trust-label">Rated by 200+ trainees</span>
               </div>
-              <ul class="hero__highlights">
-                <li v-for="item in heroTags" :key="item">
-                  <span class="hero__highlight-check" aria-hidden="true"
-                    >✓</span
-                  >
-                  {{ item }}
-                </li>
-              </ul>
+              <div class="hero__trust-divider" aria-hidden="true"></div>
+              <div class="hero__trust-item">
+                <span class="hero__trust-value">3</span>
+                <span class="hero__trust-label">Qualification levels</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="hero__stat-strip animate-hero-4">
-          <div
-            v-for="item in siteConfig.trustIndicators.slice(0, 3)"
-            :key="item.label"
-            class="hero__stat">
-            <span class="hero__stat-value"
-              ><AnimatedCounter :value="item.value"
-            /></span>
-            <span class="hero__stat-label">{{ item.label }}</span>
-          </div>
-        </div>
-
-        <div class="hero__scroll animate-hero-4" aria-hidden="true">
+        <div class="hero__scroll-indicator" aria-hidden="true">
           <span class="hero__scroll-line" />
           <span class="hero__scroll-text">Scroll</span>
         </div>
@@ -179,7 +140,7 @@
               class="featured-programmes__item"
               :class="{ 'featured-programmes__item--center': index === 1 }"
             >
-              <CourseTeaserCard :course="course" :featured="index === 1" />
+              <CourseCard :course="course" :featured="index === 1" />
             </RevealOnScroll>
           </div>
         </RevealOnScroll>
@@ -200,16 +161,19 @@
 
     <CourseFinder />
 
-    <ParallaxStrip
-      :src="images.strips.workshop"
-      size="xl"
-      overlay="fade"
-      :speed="0.48" />
-
-    <!-- Why choose bento -->
-    <section class="section section--sage">
-      <div class="container">
+    <!-- Why choose bento with parallax background -->
+    <section class="section why-choose-section">
+      <div class="why-choose__bg" aria-hidden="true">
+        <ParallaxImage
+          :src="images.about.src"
+          :alt="images.about.alt"
+          :speed="0.45"
+          class="why-choose__image" />
+        <div class="why-choose__overlay" />
+      </div>
+      <div class="container why-choose__content">
         <SectionHeader
+          light
           eyebrow="Institute"
           title="Why choose Titus"
           description="Structured syllabi, face-to-face practice, and pathways from short certificates through advance diplomas — all on one campus." />
@@ -219,7 +183,7 @@
             :key="f.title"
             variant="scale"
             :delay="i * 70"
-            class="feature-cell card card-lift">
+            class="feature-cell card card-lift why-choose-card">
             <span class="feature-cell__num" aria-hidden="true">{{
               String(i + 1).padStart(2, '0')
             }}</span>
@@ -259,12 +223,6 @@
       </div>
     </section>
 
-    <ParallaxStrip
-      :src="images.strips.materials"
-      size="lg"
-      overlay="fade"
-      :speed="0.5" />
-
     <HowYouLearn />
 
     <!-- Principal -->
@@ -275,40 +233,6 @@
           title="About our principal"
           description="Academic direction, mentoring, and on-campus standards for every programme at Titus." />
         <PrincipalSpotlight compact />
-      </div>
-    </section>
-
-    <ParallaxStrip
-      :src="images.strips.campus"
-      size="md"
-      overlay="fade"
-      :speed="0.45" />
-
-    <!-- Student experience gallery -->
-    <section class="section section--white">
-      <div class="container">
-        <SectionHeader
-          title="Student experience"
-          description="Training grounded in real practice — not theory alone."
-          center />
-        <div class="gallery-grid">
-          <RevealOnScroll
-            v-for="item in studentGallery"
-            :key="item.id"
-            variant="up">
-            <figure class="gallery-item">
-              <img :src="item.src" :alt="item.alt" loading="lazy" />
-              <figcaption>{{ item.title }}</figcaption>
-            </figure>
-          </RevealOnScroll>
-        </div>
-        <RevealOnScroll variant="fade" class="gallery-more">
-          <RouterLink
-            to="/student-experience"
-            class="btn btn--outline link-arrow">
-            Learn more <span aria-hidden="true">→</span>
-          </RouterLink>
-        </RevealOnScroll>
       </div>
     </section>
 
@@ -326,7 +250,7 @@
 import { siteConfig } from '@/data/site';
 import { programmePathways, featuredProgrammeSlugs } from '@/data/programmes';
 import { courses, getCourseBySlug } from '@/data/courses';
-import CourseTeaserCard from '@/components/sections/CourseTeaserCard.vue';
+import CourseCard from '@/components/sections/CourseCard.vue';
 import ProgrammePathwayCard from '@/components/sections/ProgrammePathwayCard.vue';
 import ContactChannels from '@/components/sections/ContactChannels.vue';
 import ImpactStats from '@/components/sections/ImpactStats.vue';
@@ -345,11 +269,29 @@ import CourseFinder from '@/components/sections/CourseFinder.vue';
 import { images } from '@/data/images';
 import { studentGallery } from '@/data/gallery';
 import { useHeroParallax } from '@/composables/useParallax';
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const { imageStyle: heroImageStyle } = useHeroParallax(0.22);
 
-const heroTags = computed(() => siteConfig.hero.highlights.slice(0, 4));
+const revealElements = ref([]);
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+  );
+
+  document.querySelectorAll('[data-reveal]').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 80}ms`;
+    observer.observe(el);
+  });
+});
 
 const pathwayCounts = computed(() =>
   programmePathways.reduce((acc, p) => {
@@ -396,7 +338,7 @@ const approachItems = [
   min-height: min(88vh, 820px);
   display: flex;
   align-items: flex-end;
-  color: var(--color-ink);
+  color: var(--color-white);
   background: var(--color-bg);
 }
 
@@ -410,31 +352,36 @@ const approachItems = [
     background:
       linear-gradient(
         180deg,
-        rgba(253, 251, 255, 0.97) 0%,
-        rgba(253, 251, 255, 0.94) 45%,
-        rgba(253, 251, 255, 0.9) 100%
+        rgba(36, 0, 70, 0.9) 0%,
+        rgba(36, 0, 70, 0.8) 45%,
+        rgba(36, 0, 70, 0.6) 100%
       );
   }
 
   .hero__content {
-    padding: calc(4.5rem + env(safe-area-inset-top, 0px)) 0 2rem;
+    padding-top: calc(5.25rem + env(safe-area-inset-top, 0px));
+    padding-bottom: clamp(2.5rem, 7vw, 3.25rem);
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
   }
 
   .hero__main {
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: stretch;
   }
 
   .hero__eyebrow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
     max-width: 100%;
-    font-size: 0.6875rem;
+    font-size: clamp(0.625rem, 2.75vw, 0.75rem);
+    padding: 0.4rem 0.7rem;
   }
 
-  .hero__eyebrow-sep {
-    display: none;
+  .hero__eyebrow-muted {
+    white-space: nowrap;
   }
 
   .hero__headline {
@@ -449,19 +396,21 @@ const approachItems = [
     line-height: 1.6;
   }
 
-  .hero__card--main {
-    padding: 1.25rem 1.35rem;
-    max-width: none;
+  .hero__trust-strip {
+    gap: 1rem;
+    padding: 1rem 0;
   }
 
-  .hero__highlights li {
-    font-size: 0.8125rem;
-    padding: 0.5rem 0;
+  .hero__trust-divider {
+    display: none;
   }
 
-  .hero__orb--1,
-  .hero__orb--3 {
-    opacity: 0.65;
+  .hero__trust-item {
+    text-align: center;
+  }
+
+  .hero__trust-value {
+    font-size: 1.75rem;
   }
 }
 
@@ -492,83 +441,36 @@ const approachItems = [
   background:
     linear-gradient(
       115deg,
-      rgba(253, 251, 255, 0.97) 0%,
-      rgba(253, 251, 255, 0.92) 38%,
-      rgba(253, 251, 255, 0.6) 68%,
-      rgba(253, 251, 255, 0.35) 100%
+      rgba(36, 0, 70, 0.85) 0%,
+      rgba(36, 0, 70, 0.7) 38%,
+      rgba(36, 0, 70, 0.45) 68%,
+      rgba(36, 0, 70, 0.25) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(253, 251, 255, 0.3) 0%,
+      rgba(36, 0, 70, 0.4) 0%,
       transparent 35%,
-      rgba(253, 251, 255, 0.5) 100%
+      rgba(36, 0, 70, 0.55) 100%
     );
 }
 
-.hero__grid-pattern {
+.hero__accent-bar {
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(90, 24, 154, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(90, 24, 154, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
-  -webkit-mask-image: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    transparent 60%
-  );
-}
-
-.hero__orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.hero__orb--1 {
-  width: min(420px, 70vw);
-  height: min(420px, 70vw);
-  top: -8%;
-  left: -5%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 109, 0, 0.12) 0%,
-    transparent 70%
-  );
-}
-
-.hero__orb--2 {
-  width: min(350px, 55vw);
-  height: min(350px, 55vw);
-  bottom: 10%;
-  right: 15%;
-  background: radial-gradient(
-    circle,
-    rgba(123, 44, 191, 0.1) 0%,
-    transparent 70%
-  );
-}
-
-.hero__orb--3 {
-  width: min(280px, 45vw);
-  height: min(280px, 45vw);
-  top: 30%;
-  right: -3%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 158, 0, 0.08) 0%,
-    transparent 70%
-  );
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--palette-purple-700), var(--palette-orange-500));
+  opacity: 0.15;
 }
 
 .hero__content {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: clamp(4.5rem, 12vh, 7rem) 0 clamp(2.5rem, 5vw, 3rem);
+  padding-top: clamp(4.5rem, 12vh, 7rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3rem);
+  /* Horizontal padding from .container; do not zero with shorthand padding */
 }
 
 @media (min-width: 768px) {
@@ -578,16 +480,7 @@ const approachItems = [
 }
 
 .hero__main {
-  display: grid;
-  gap: 2.5rem;
-  align-items: end;
-}
-
-@media (min-width: 1024px) {
-  .hero__main {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
+  display: block;
 }
 
 .hero__copy {
@@ -598,76 +491,49 @@ const approachItems = [
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 0.625rem;
+  gap: 0.5rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--color-ink-soft);
+  color: rgba(255, 255, 255, 0.85);
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-full);
-  background: rgba(90, 24, 154, 0.06);
-  border: 1px solid rgba(90, 24, 154, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.hero__live {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
+.hero__badge {
   background: var(--palette-orange-500);
-  outline: 2px solid rgba(255, 109, 0, 0.35);
-  outline-offset: 2px;
-  animation: hero-pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes hero-pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.75;
-    transform: scale(0.92);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__live {
-    animation: none;
-  }
+  color: var(--color-white);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.6875rem;
+  font-weight: 700;
 }
 
 .hero__eyebrow-sep {
-  opacity: 0.35;
+  opacity: 0.5;
 }
 
 .hero__eyebrow-muted {
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .hero__headline {
   margin: 1.5rem 0 0;
-  font-size: clamp(2.5rem, 6vw, 4.25rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  color: var(--color-ink);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--color-white);
 }
 
 .hero__headline-row {
   display: block;
 }
 
-.hero__headline-row--accent {
-  background: linear-gradient(
-    100deg,
-    var(--palette-orange-500) 0%,
-    var(--palette-orange-600) 50%,
-    var(--palette-purple-700) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.hero__headline-row--highlight {
+  color: var(--palette-orange-400);
 }
 
 .hero__sub {
@@ -676,7 +542,7 @@ const approachItems = [
   font-size: 1.0625rem;
   font-weight: 500;
   line-height: 1.65;
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .hero__actions {
@@ -701,204 +567,109 @@ const approachItems = [
   }
 }
 
-.hero__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--color-ink-soft);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.hero__link-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.375rem;
-  height: 1.375rem;
-  border-radius: 50%;
-  background: rgba(90, 24, 154, 0.08);
-  font-size: 0.625rem;
-  transition: background 0.2s ease;
-}
-
-.hero__link:hover {
-  color: var(--palette-purple-700);
-  text-decoration: none;
-}
-
-.hero__link:hover .hero__link-icon {
-  background: rgba(90, 24, 154, 0.15);
-}
-
 .hero__cta-primary {
   box-shadow: none;
 }
 
-.hero__visual {
+.hero__trust-strip {
   display: flex;
-  justify-content: center;
-}
-
-@media (min-width: 1024px) {
-  .hero__visual {
-    justify-content: flex-end;
-    padding-bottom: 1rem;
-  }
-}
-
-.hero__card--main {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(90, 24, 154, 0.1);
-  border-radius: var(--radius-lg);
-  padding: 1.75rem 2rem;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: none;
-  width: 100%;
-  max-width: 22rem;
-}
-
-.hero__trust {
-  display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 0.75rem;
-  padding: 0.5rem 0.875rem;
-  border-radius: var(--radius-full);
-  background: rgba(90, 24, 154, 0.05);
-  border: 1px solid rgba(90, 24, 154, 0.08);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.hero__rating-score {
-  font-size: 0.875rem;
-  font-weight: 800;
-  color: var(--color-ink);
-}
-
-.hero__rating-label {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-muted);
-}
-
-.hero__stars {
-  color: var(--palette-orange-400);
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-}
-
-.hero__highlights {
-  list-style: none;
-  padding: 0;
-  margin: 1.25rem 0 0;
-}
-
-.hero__highlights li {
+.hero__trust-item {
   display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
-  padding: 0.625rem 0;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-ink-soft);
-  line-height: 1.45;
-  border-bottom: 1px solid rgba(90, 24, 154, 0.06);
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.hero__highlights li:last-child {
-  border-bottom: none;
-}
-
-.hero__highlight-check {
-  flex-shrink: 0;
+.hero__trust-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 1.125rem;
-  height: 1.125rem;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    var(--palette-orange-500),
-    var(--palette-orange-600)
-  );
-  color: #fff;
-  font-size: 0.5625rem;
+  gap: 0.375rem;
+}
+
+.hero__trust-badge .hero__stars {
+  font-size: 0.75rem;
+  color: var(--palette-orange-400);
+}
+
+.hero__trust-badge .hero__rating-score {
+  font-size: 1.125rem;
   font-weight: 800;
-  margin-top: 0.1rem;
+  color: var(--palette-orange-400);
 }
 
-.hero__stat-strip {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1px;
-  margin-top: clamp(2rem, 4vw, 3rem);
-  background: rgba(90, 24, 154, 0.08);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+.hero__trust-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-@media (min-width: 520px) {
-  .hero__stat-strip {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.hero__trust-divider {
+  width: 1px;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
 }
 
-.hero__stat {
-  padding: 1rem 1.15rem;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-@media (min-width: 768px) {
-  .hero__stat {
-    padding: 1.25rem 1.5rem;
-  }
-}
-
-@media (min-width: 520px) {
-  .hero__stat:first-child {
-    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-  }
-
-  .hero__stat:last-child {
-    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  }
-}
-
-.hero__stat-value {
-  display: block;
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+.hero__trust-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.5rem);
   font-weight: 800;
-  color: var(--palette-orange-500);
+  color: var(--palette-orange-400);
   line-height: 1;
 }
 
-.hero__stat-label {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  line-height: 1.35;
-  color: var(--color-muted);
+.hero__scroll-indicator {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-white);
 }
 
-.hero__scroll {
+.hero__card-desc {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hero__card-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--palette-orange-500);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  margin-left: auto;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero__card-link:hover {
+  background: var(--palette-orange-600);
+  transform: translateX(2px);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.hero__scroll-indicator {
   display: none;
   position: absolute;
-  right: 1.25rem;
-  bottom: 2.5rem;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 }
 
-@media (min-width: 1024px) {
-  .hero__scroll {
+@media (min-width: 768px) {
+  .hero__scroll-indicator {
     display: flex;
   }
 }
@@ -916,6 +687,26 @@ const approachItems = [
   text-transform: uppercase;
   color: var(--color-muted);
   writing-mode: vertical-rl;
+}
+
+/* Reveal animations */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .about {
@@ -1136,6 +927,13 @@ const approachItems = [
 /* Approach bento */
 .bento--approach {
   align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .bento--approach {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1229,5 +1027,100 @@ const approachItems = [
 .btn:hover .btn-arrow,
 .link-arrow:hover span {
   transform: translateX(4px);
+}
+
+/* Courses offered section title overrides */
+#courses-offered .section-header__eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+#courses-offered .section-title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.why-choose-bg {
+  position: relative;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(36, 0, 70, 0.85) 0%,
+      rgba(36, 0, 70, 0.75) 100%
+    ),
+    url('/images/abouttitus.jpeg') center/cover no-repeat;
+  color: var(--color-white);
+}
+
+/* Why choose section */
+.why-choose-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  color: var(--color-white);
+}
+
+.why-choose__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.why-choose__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+}
+
+.why-choose__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+}
+
+.why-choose__content {
+  position: relative;
+  z-index: 1;
+}
+
+.why-choose-section .section-header__eyebrow,
+.why-choose-section .section-title,
+.why-choose-section .section-header__desc {
+  color: inherit;
+}
+
+.why-choose-section .feature-cell.why-choose-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.why-choose-section .feature-cell.why-choose-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.why-choose-section .feature-cell.why-choose-card h3 {
+  color: var(--color-white);
+}
+
+.why-choose-section .feature-cell.why-choose-card p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.why-choose-section .feature-cell.why-choose-card .feature-cell__num {
+  color: rgba(255, 255, 255, 0.1);
 }
 </style>

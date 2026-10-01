@@ -1,56 +1,61 @@
 <template>
   <article
-    class="catalogue-course card"
+    class="course-card"
     :class="[
-      `catalogue-course--${course.category || 'default'}`,
-      { 'catalogue-course--dark': dark },
+      `course-card--${course.category || 'default'}`,
+      { 'course-card--dark': dark, 'course-card--featured': featured },
     ]"
   >
-    <div class="catalogue-course__header">
-      <span v-if="categoryShort" class="catalogue-course__pathway">{{ categoryShort }}</span>
-      <span class="catalogue-course__duration">{{ course.duration }}</span>
+    <div class="course-card__header">
+      <span v-if="categoryShort" class="course-card__pathway">{{ categoryShort }}</span>
+      <span class="course-card__duration">{{ course.duration }}</span>
     </div>
 
-    <h3 class="catalogue-course__title">
-      <RouterLink :to="`/courses/${course.slug}`" class="catalogue-course__title-link">
+    <div class="course-card__duration-wrap" v-if="featured">
+      <span class="course-card__duration-large">{{ course.duration }}</span>
+      <span class="course-card__duration-label">on campus</span>
+    </div>
+
+    <h3 class="course-card__title">
+      <RouterLink :to="`/courses/${course.slug}`" class="course-card__title-link">
         {{ course.name }}
       </RouterLink>
     </h3>
 
-    <p class="catalogue-course__desc">{{ course.shortDescription }}</p>
+    <p class="course-card__desc">{{ course.shortDescription }}</p>
 
-    <dl class="catalogue-course__meta">
+    <dl class="course-card__meta">
       <div>
         <dt>Eligibility</dt>
         <dd>{{ course.eligibility }}</dd>
       </div>
-      <div>
+      <div v-if="!featured">
         <dt>Format</dt>
         <dd>{{ course.format }}</dd>
       </div>
-      <div>
+      <div v-if="!featured">
         <dt>Next batch</dt>
         <dd>{{ course.nextBatch }}</dd>
       </div>
-      <div>
+      <div v-if="!featured">
         <dt>Medium</dt>
         <dd>{{ course.medium }}</dd>
       </div>
     </dl>
 
-    <div class="catalogue-course__actions">
+    <div class="course-card__actions">
       <RouterLink
         :to="`/courses/${course.slug}`"
-        class="btn btn--primary catalogue-course__btn"
+        class="btn btn--primary course-card__btn"
         :class="{ 'btn--outline-dark': dark }"
       >
         Programme details
       </RouterLink>
-      <div class="catalogue-course__secondary">
+      <div class="course-card__secondary">
         <a
           v-if="course.syllabusPdf"
           :href="course.syllabusPdf"
-          class="catalogue-course__syllabus"
+          class="course-card__syllabus"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -58,8 +63,8 @@
         </a>
         <RouterLink
           :to="`/apply?course=${course.slug}`"
-          class="catalogue-course__apply"
-          :class="{ 'catalogue-course__apply--dark': dark }"
+          class="course-card__apply"
+          :class="{ 'course-card__apply--dark': dark }"
         >
           Apply <span aria-hidden="true">→</span>
         </RouterLink>
@@ -75,6 +80,7 @@ import { courseCategories } from "@/data/programmes";
 const props = defineProps({
   course: { type: Object, required: true },
   dark: { type: Boolean, default: false },
+  featured: { type: Boolean, default: false },
 });
 
 const categoryShort = computed(() => {
@@ -86,7 +92,8 @@ const categoryShort = computed(() => {
 </script>
 
 <style scoped>
-.catalogue-course {
+.course-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -99,26 +106,46 @@ const categoryShort = computed(() => {
     transform 0.3s var(--ease-out-expo);
 }
 
-.catalogue-course:hover {
-  border-color: rgba(90, 24, 154, 0.25);
+.course-card:hover {
+  border-color: rgba(90, 24, 154, 0.22);
   transform: translateY(-3px);
 }
 
-.catalogue-course--dark {
+.course-card--featured {
+  border-color: rgba(255, 133, 0, 0.35);
+}
+
+.course-card--featured::before {
+  content: "Popular start";
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--palette-purple-900);
+  background: linear-gradient(100deg, var(--palette-orange-400), var(--palette-orange-500));
+  border-radius: var(--radius-full);
+}
+
+.course-card--dark {
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(255, 255, 255, 0.12);
   color: var(--color-white);
 }
 
-.catalogue-course--certificate .catalogue-course__header {
+.course-card--certificate .course-card__header {
   background: linear-gradient(135deg, rgba(255, 158, 0, 0.14) 0%, transparent 72%);
 }
 
-.catalogue-course--diploma .catalogue-course__header {
+.course-card--diploma .course-card__header {
   background: linear-gradient(135deg, rgba(90, 24, 154, 0.12) 0%, transparent 72%);
 }
 
-.catalogue-course--advanced-diploma .catalogue-course__header {
+.course-card--advanced-diploma .course-card__header {
   background: linear-gradient(
     135deg,
     rgba(90, 24, 154, 0.1) 0%,
@@ -127,66 +154,116 @@ const categoryShort = computed(() => {
   );
 }
 
-.catalogue-course__header {
+.course-card--certificate .course-card__header {
+  background: linear-gradient(180deg, rgba(255, 158, 0, 0.12) 0%, transparent 100%);
+}
+
+.course-card--diploma .course-card__header {
+  background: linear-gradient(180deg, rgba(90, 24, 154, 0.1) 0%, transparent 100%);
+}
+
+.course-card--advanced-diploma .course-card__header {
+  background: linear-gradient(
+    135deg,
+    rgba(90, 24, 154, 0.12) 0%,
+    rgba(255, 133, 0, 0.08) 100%
+  );
+}
+
+.course-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.875rem 1.25rem;
+  padding: 1rem 1.25rem 0.75rem;
 }
 
-.catalogue-course__pathway {
+.course-card__pathway {
   font-size: 0.6875rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-primary);
 }
 
-.catalogue-course--dark .catalogue-course__pathway {
+.course-card--dark .course-card__pathway {
   color: var(--palette-orange-400);
 }
 
-.catalogue-course__duration {
-  font-size: 0.8125rem;
+.course-card__duration {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.course-card--certificate .course-card__duration,
+.course-card--diploma .course-card__duration,
+.course-card--advanced-diploma .course-card__duration {
+  color: var(--color-muted);
+}
+
+.course-card--dark .course-card__duration {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.course-card__duration-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.course-card__duration-large {
+  font-size: clamp(1.75rem, 4vw, 2.125rem);
   font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
   color: var(--palette-orange-600);
 }
 
-.catalogue-course--diploma .catalogue-course__duration,
-.catalogue-course--advanced-diploma .catalogue-course__duration {
+.course-card--diploma .course-card__duration-large,
+.course-card--advanced-diploma .course-card__duration-large {
   color: var(--palette-purple-700);
 }
 
-.catalogue-course--dark .catalogue-course__duration {
-  color: var(--palette-orange-400);
+.course-card__duration-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-muted);
 }
 
-.catalogue-course__title {
-  margin: 0;
+.course-card__title {
+  margin: 0.75rem 0 0;
   padding: 0 1.25rem;
+  font-family: var(--font-sans);
   font-size: 1.0625rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.02em;
 }
 
-.catalogue-course__title-link {
-  color: var(--color-ink);
-  text-decoration: none;
+.course-card--featured .course-card__title {
+  font-size: 1.125rem;
 }
 
-.catalogue-course--dark .catalogue-course__title-link {
+.course-card__title-link {
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.course-card--dark .course-card__title-link {
   color: var(--color-white);
 }
 
-.catalogue-course__title-link:hover {
+.course-card__title-link:hover {
   color: var(--color-primary);
   text-decoration: none;
 }
 
-.catalogue-course__desc {
-  margin: 0.5rem 0 0;
+.course-card__desc {
+  margin: 0.625rem 0 0;
   padding: 0 1.25rem;
   font-size: 0.8125rem;
   line-height: 1.6;
@@ -198,63 +275,66 @@ const categoryShort = computed(() => {
   overflow: hidden;
 }
 
-.catalogue-course--dark .catalogue-course__desc {
+.course-card--dark .course-card__desc {
   color: rgba(255, 255, 255, 0.62);
 }
 
-.catalogue-course__meta {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.65rem 1rem;
+.course-card__meta {
   margin: 1rem 1.25rem 0;
-  padding-top: 1rem;
+  padding: 0.75rem 0 0;
   border-top: 1px dashed var(--color-border);
 }
 
-.catalogue-course--dark .catalogue-course__meta {
+.course-card--dark .course-card__meta {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-.catalogue-course__meta dt {
+.course-card__meta div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.course-card__meta dt {
   font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-muted);
 }
 
-.catalogue-course__meta dd {
-  margin: 0.15rem 0 0;
+.course-card__meta dd {
+  margin: 0;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-ink-soft);
 }
 
-.catalogue-course--dark .catalogue-course__meta dd {
+.course-card--dark .course-card__meta dd {
   color: rgba(255, 255, 255, 0.78);
 }
 
-.catalogue-course__actions {
+.course-card__actions {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  margin-top: 1.15rem;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
   padding: 1rem 1.25rem 1.25rem;
   background: var(--color-muted-bg);
   border-top: 1px solid var(--color-border);
 }
 
-.catalogue-course--dark .catalogue-course__actions {
+.course-card--dark .course-card__actions {
   background: rgba(0, 0, 0, 0.2);
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-.catalogue-course__btn {
+.course-card__btn {
   width: 100%;
   justify-content: center;
+  font-size: 0.875rem;
 }
 
-.catalogue-course__secondary {
+.course-card__secondary {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -263,16 +343,22 @@ const categoryShort = computed(() => {
   font-weight: 700;
 }
 
-.catalogue-course__syllabus {
+.course-card__secondary a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+.course-card__syllabus {
   color: var(--color-primary);
   text-decoration: none;
 }
 
-.catalogue-course__syllabus:hover {
+.course-card__syllabus:hover {
   text-decoration: underline;
 }
 
-.catalogue-course__apply {
+.course-card__apply {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
@@ -280,20 +366,25 @@ const categoryShort = computed(() => {
   text-decoration: none;
 }
 
-.catalogue-course__apply--dark {
+.course-card__apply--dark {
   color: var(--palette-orange-400);
 }
 
-.catalogue-course__apply span {
+.course-card__apply span {
   transition: transform 0.2s var(--ease-out-expo);
 }
 
-.catalogue-course__apply:hover span {
+.course-card__apply:hover {
+  text-decoration: none;
+  color: var(--palette-orange-550);
+}
+
+.course-card__apply:hover span {
   transform: translateX(3px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .catalogue-course:hover {
+  .course-card:hover {
     transform: none;
   }
 }

@@ -23,7 +23,7 @@ defineProps({
 
 .faq-item {
   border-bottom: 1px solid var(--color-border);
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .faq-list--dark .faq-item {
@@ -31,12 +31,14 @@ defineProps({
 }
 
 .faq-item__question {
+  display: block;
   font-weight: 500;
   font-size: 0.9375rem;
   color: var(--color-ink);
   cursor: pointer;
   list-style: none;
-  padding-right: 1.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem 0.75rem 0;
   position: relative;
 }
 

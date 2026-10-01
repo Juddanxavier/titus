@@ -149,6 +149,13 @@ const learningTiles = [
   object-fit: cover;
 }
 
+/* Tablet: single-column until 1024 — a 4:5 image would be ~1.5 screens tall */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .learn__image {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 .learn__image-badge {
   position: absolute;
   left: 1rem;
@@ -252,6 +259,7 @@ const learningTiles = [
 .learn__step-link {
   display: inline-flex;
   align-items: center;
+  min-height: 24px;
   gap: 0.25rem;
   margin-top: 0.75rem;
   font-size: 0.75rem;
@@ -330,6 +338,9 @@ const learningTiles = [
 }
 
 .learn__text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: 0.8125rem;
   font-weight: 700;
   color: var(--color-muted);

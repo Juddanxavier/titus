@@ -57,6 +57,9 @@ const filteredFaqs = computed(() => faqs.filter((f) => f.category === activeCate
   margin-bottom: 2rem;
 }
 .faq-tab {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 0.5rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: 999px;

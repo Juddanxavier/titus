@@ -338,6 +338,7 @@ async function handleSubmit() {
   .form-grid { grid-template-columns: repeat(2, 1fr); }
 }
 .form-step { border: none; padding: 0; margin: 0; min-width: 0; }
+input[type="file"] { max-width: 100%; }
 .form-actions {
   display: flex;
   gap: 0.75rem;

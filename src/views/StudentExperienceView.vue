@@ -103,6 +103,9 @@ const experiences = [
   gap: 1rem;
   margin-top: 1.5rem;
 }
+@media (max-width: 399px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
 @media (min-width: 768px) {
   .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 }

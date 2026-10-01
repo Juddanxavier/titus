@@ -98,7 +98,7 @@ const { containerRef, imageStyle } = useParallax({
   left: 0;
   right: 0;
   z-index: 1;
-  margin: 0;
+  margin: 0 auto;
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   color: var(--color-white);

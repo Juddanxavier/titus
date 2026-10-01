@@ -91,6 +91,9 @@ async function submit() {
 
 <style scoped>
 .brochure-form { padding: 1.5rem; }
+@media (max-width: 480px) {
+  .brochure-form { padding: 1.25rem; }
+}
 .brochure-form__intro {
   font-size: 0.875rem;
   color: var(--color-muted);

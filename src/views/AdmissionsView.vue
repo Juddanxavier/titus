@@ -79,4 +79,16 @@ import CtaBanner from "@/components/sections/CtaBanner.vue";
   color: var(--color-ink);
 }
 .data-table td { color: var(--color-muted); }
+@media (max-width: 480px) {
+  .data-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem;
+    font-size: 0.8125rem;
+  }
+}
 </style>

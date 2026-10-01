@@ -59,11 +59,11 @@ html.app-ready #app {
   --color-earth: var(--palette-purple-950);
   --color-warm: var(--palette-orange-400);
 
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-serif: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-serif: "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-display: "Montserrat", system-ui, -apple-system, sans-serif;
   --font-weight-body: 500;
-  --font-weight-heading: 800;
+  --font-weight-heading: 700;
   --font-weight-subheading: 700;
   --font-weight-ui: 700;
 
@@ -249,10 +249,10 @@ img {
 }
 
 .section-title {
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: var(--font-weight-heading);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 600;
   color: var(--color-ink);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
 }
 
 .section--dark .section-title {

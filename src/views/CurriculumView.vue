@@ -146,6 +146,16 @@ const syllabusPoints = [
     justify-content: space-between;
     gap: 2rem;
   }
+
+  .curriculum-hero__copy {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .curriculum-hero__stats {
+    flex: 0 1 auto;
+    width: auto;
+  }
 }
 
 .curriculum-hero__eyebrow {
@@ -180,7 +190,6 @@ const syllabusPoints = [
   gap: 0.65rem;
   margin: 0;
   flex-shrink: 0;
-  width: 100%;
 }
 
 .curriculum-hero__stats div:last-child {
