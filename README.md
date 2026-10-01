@@ -26,7 +26,7 @@ Forms submit to `api/apply.php`, `api/contact.php`, and `api/brochure.php`.
 
 ## Maintenance mode
 
-**Currently enabled for production** (`public/maintenance.flag` + `VITE_MAINTENANCE_MODE=true` in `.env.production`).
+**Currently disabled for production** (site is live). Re-enable by adding `public/maintenance.flag` and setting `VITE_MAINTENANCE_MODE=true` in `.env.production`.
 
 | Layer | Behaviour |
 |--------|-----------|
