@@ -291,8 +291,17 @@ const categoryShort = computed(() => {
 }
 
 .course-card__meta div {
-  display: grid;
-  gap: 0.2rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.course-card__meta div:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 
 .course-card__meta dt {
@@ -301,6 +310,7 @@ const categoryShort = computed(() => {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-muted);
+  flex-shrink: 0;
 }
 
 .course-card__meta dd {
@@ -308,6 +318,11 @@ const categoryShort = computed(() => {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-ink-soft);
+  text-align: right;
+}
+
+.course-card--dark .course-card__meta div {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
 .course-card--dark .course-card__meta dd {

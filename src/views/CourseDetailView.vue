@@ -141,11 +141,21 @@ const courseFaqs = computed(() =>
 }
 .sidebar-meta {
   display: grid;
-  gap: 1rem;
+  gap: 0;
   margin: 0 0 1.5rem;
   font-size: 0.875rem;
 }
-.sidebar-meta dt { font-weight: 600; color: var(--color-ink); }
-.sidebar-meta dd { margin: 0.125rem 0 0; color: var(--color-muted); }
+.sidebar-meta > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.sidebar-meta > div:first-child { padding-top: 0; }
+.sidebar-meta > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.sidebar-meta dt { font-weight: 600; color: var(--color-ink); flex-shrink: 0; }
+.sidebar-meta dd { margin: 0; color: var(--color-muted); text-align: right; }
 .detail__sidebar .btn--outline { margin-bottom: 0.75rem; }
 </style>
