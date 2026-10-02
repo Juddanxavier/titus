@@ -25,14 +25,13 @@ for (const c of data) {
 const sharedBlock = `import { getNextBatchLabel } from "../utils/batch.js";
 
 const shared = {
-  location: "[City, Country]",
+  location: "Poonamallee",
   nextBatch: getNextBatchLabel(),
   format: "On-campus",
   medium: "English",
   ageGroup: "Varies by programme — see syllabus",
   fees: {
-    amount: "[XX,XXX]",
-    currency: "INR",
+    amount: "Contact admissions",
     note: "Contact admissions for current fees and instalment options.",
   },
   paymentOptions: [

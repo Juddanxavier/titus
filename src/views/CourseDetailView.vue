@@ -25,10 +25,9 @@
             <div><dt>Format</dt><dd>{{ course.format }}</dd></div>
             <div><dt>Eligibility</dt><dd>{{ course.eligibility }}</dd></div>
             <div><dt>Medium</dt><dd>{{ course.medium }}</dd></div>
-            <div><dt>Age group</dt><dd>{{ course.ageGroup }}</dd></div>
             <div><dt>Location</dt><dd>{{ course.location }}</dd></div>
             <div><dt>Next batch</dt><dd>{{ course.nextBatch }}</dd></div>
-            <div><dt>Fees</dt><dd>{{ course.fees.currency }} {{ course.fees.amount }}</dd></div>
+            <div><dt>Fees</dt><dd>{{ course.fees?.amount || "Contact admissions" }}</dd></div>
           </dl>
           <a
             v-if="siteConfig.features.syllabusDownload && course.syllabusPdf"
@@ -74,7 +73,7 @@
           <p>{{ course.certificateInfo }}</p>
 
           <h2>Fees and payment</h2>
-          <p>{{ course.fees.note }}</p>
+          <p>{{ course.fees?.note }}</p>
           <ul><li v-for="opt in course.paymentOptions" :key="opt">{{ opt }}</li></ul>
 
           <h2>Frequently asked questions</h2>
