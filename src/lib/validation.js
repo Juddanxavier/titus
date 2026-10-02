@@ -1,8 +1,6 @@
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ALLOWED_DOCS = {
   resume: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
-  identityDocument: ["application/pdf", "image/jpeg", "image/png"],
-  educationalCertificate: ["application/pdf", "image/jpeg", "image/png"],
 };
 
 function isEmail(value) {
@@ -45,10 +43,6 @@ export function validateStep(step, form) {
   if (step === 4) {
     const resumeErr = validateFile(form.resume, "resume");
     if (resumeErr) errors.resume = resumeErr;
-    const idErr = validateFile(form.identityDocument, "identityDocument");
-    if (idErr) errors.identityDocument = idErr;
-    const certErr = validateFile(form.educationalCertificate, "educationalCertificate");
-    if (certErr) errors.educationalCertificate = certErr;
   }
 
   if (step === 5) {

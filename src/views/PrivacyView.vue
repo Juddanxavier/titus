@@ -14,7 +14,7 @@
         <ul>
           <li>Contact details (name, email, phone, address)</li>
           <li>Application information (education, experience, course preferences)</li>
-          <li>Documents you upload (resume, certificates, identity documents)</li>
+          <li>Documents you upload (resume)</li>
           <li>Communications you send to us</li>
         </ul>
         <h2>How we use your information</h2>

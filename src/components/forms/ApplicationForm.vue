@@ -48,10 +48,6 @@
               <p v-if="errors.phone" class="form-error">⚠ {{ errors.phone }}</p>
             </div>
             <div class="form-group">
-              <label class="form-label" for="whatsapp">WhatsApp number</label>
-              <input id="whatsapp" v-model="form.whatsapp" class="form-input" type="tel" />
-            </div>
-            <div class="form-group">
               <label class="form-label" for="city">City *</label>
               <input id="city" v-model="form.city" class="form-input" type="text" />
               <p v-if="errors.city" class="form-error">⚠ {{ errors.city }}</p>
@@ -131,18 +127,6 @@
             <p class="form-hint">PDF or Word document, max 5 MB</p>
             <p v-if="errors.resume" class="form-error">⚠ {{ errors.resume }}</p>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="identityDocument">Identity document *</label>
-            <input id="identityDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" @change="onFile($event, 'identityDocument')" />
-            <p class="form-hint">PDF, JPG, or PNG, max 5 MB</p>
-            <p v-if="errors.identityDocument" class="form-error">⚠ {{ errors.identityDocument }}</p>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="educationalCertificate">Educational certificate *</label>
-            <input id="educationalCertificate" type="file" accept=".pdf,.jpg,.jpeg,.png" @change="onFile($event, 'educationalCertificate')" />
-            <p class="form-hint">PDF, JPG, or PNG, max 5 MB</p>
-            <p v-if="errors.educationalCertificate" class="form-error">⚠ {{ errors.educationalCertificate }}</p>
-          </div>
         </fieldset>
 
         <!-- Step 5 -->
@@ -181,11 +165,18 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { courses } from "@/data/courses";
 import { siteConfig } from "@/data/site";
 import { validateStep, validateAll } from "@/lib/validation";
+
+const props = defineProps({
+  /** Selected programme slug, kept in sync with the page's programme picker. */
+  courseSlug: { type: String, default: "" },
+});
+
+const emit = defineEmits(["step-change", "update:courseSlug"]);
 
 const route = useRoute();
 const step = ref(1);
@@ -202,12 +193,13 @@ const stepLabels = [
   "Review",
 ];
 
+watch(step, (value) => emit("step-change", value), { immediate: true });
+
 const form = reactive({
   fullName: "",
   dateOfBirth: "",
   email: "",
   phone: "",
-  whatsapp: "",
   city: "",
   country: "",
   highestQualification: "",
@@ -218,8 +210,6 @@ const form = reactive({
   preferredBatch: "",
   interestStatement: "",
   resume: null,
-  identityDocument: null,
-  educationalCertificate: null,
   consent: false,
 });
 
@@ -228,9 +218,25 @@ const courseName = computed(() => {
   return c ? c.name : form.coursePreference;
 });
 
+// Keep the page's programme picker and the form's course preference in sync.
+watch(
+  () => props.courseSlug,
+  (value) => {
+    if (value && value !== form.coursePreference) form.coursePreference = value;
+  },
+  { immediate: true }
+);
+
+watch(
+  () => form.coursePreference,
+  (value) => {
+    if (value !== props.courseSlug) emit("update:courseSlug", value);
+  }
+);
+
 onMounted(() => {
   form.preferredBatch = siteConfig.announcement.batchDate;
-  if (route.query.course) {
+  if (typeof route.query.course === "string" && route.query.course) {
     form.coursePreference = route.query.course;
   }
 });
@@ -257,6 +263,16 @@ function prevStep() {
   clearErrors();
   step.value--;
 }
+
+/** Jump back to an earlier step (used by the sidebar progress list). */
+function goToStep(n) {
+  if (!Number.isInteger(n) || n < 1 || n > stepLabels.length) return;
+  if (n >= step.value) return;
+  clearErrors();
+  step.value = n;
+}
+
+defineExpose({ goToStep });
 
 async function handleSubmit() {
   clearErrors();

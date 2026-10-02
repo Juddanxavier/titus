@@ -25,7 +25,7 @@ export const admissionsInfo = {
     {
       title: "Send your documents",
       description:
-        "Upload your highest educational certificate, government ID, and resume. Admissions may contact you if anything else is needed.",
+        "Attach your resume with the application. Admissions will ask for certificates or ID separately if they are needed.",
     },
     {
       title: "Join your cohort",
@@ -35,9 +35,9 @@ export const admissionsInfo = {
   ],
   requiredDocuments: [
     "Completed application form",
-    "Copy of highest educational certificate",
-    "Government-issued identity document",
-    "Recent resume or curriculum vitae",
+    "Recent resume or curriculum vitae (uploaded with the form)",
+    "Copy of highest educational certificate (on request)",
+    "Government-issued identity document (on request)",
     "Passport-size photograph (if requested)",
   ],
   feesOverview:

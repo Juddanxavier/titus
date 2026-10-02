@@ -40,12 +40,6 @@ $resumeErr = validate_file_upload('resume', [
 ]);
 if ($resumeErr) $errors['resume'] = $resumeErr;
 
-$idErr = validate_file_upload('identityDocument', ['application/pdf', 'image/jpeg', 'image/png']);
-if ($idErr) $errors['identityDocument'] = $idErr;
-
-$certErr = validate_file_upload('educationalCertificate', ['application/pdf', 'image/jpeg', 'image/png']);
-if ($certErr) $errors['educationalCertificate'] = $certErr;
-
 if (!empty($errors)) {
     json_response(['success' => false, 'message' => 'Please correct the errors below.', 'errors' => $errors], 422);
 }
@@ -53,8 +47,6 @@ if (!empty($errors)) {
 $applicationId = 'APP-' . date('Ymd') . '-' . bin2hex(random_bytes(4));
 
 save_upload('resume', $applicationId . '_resume');
-save_upload('identityDocument', $applicationId . '_id');
-save_upload('educationalCertificate', $applicationId . '_cert');
 
 // Placeholder: log application or send email notification
 $logFile = __DIR__ . '/../storage/applications.log';
