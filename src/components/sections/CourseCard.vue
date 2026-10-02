@@ -44,31 +44,31 @@
     </dl>
 
     <div class="course-card__actions">
-      <RouterLink
-        :to="`/courses/${course.slug}`"
-        class="btn btn--primary course-card__btn"
-        :class="{ 'btn--outline-dark': dark }"
-      >
-        Programme details
-      </RouterLink>
-      <div class="course-card__secondary">
-        <a
-          v-if="siteConfig.features.syllabusDownload && course.syllabusPdf"
-          :href="course.syllabusPdf"
-          class="course-card__syllabus"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div class="course-card__cta">
+        <RouterLink
+          :to="`/courses/${course.slug}`"
+          class="btn btn--primary course-card__btn"
+          :class="{ 'btn--outline-dark': dark }"
         >
-          Download syllabus
-        </a>
+          Programme details
+        </RouterLink>
         <RouterLink
           :to="`/apply?course=${course.slug}`"
-          class="course-card__apply"
+          class="btn course-card__apply"
           :class="{ 'course-card__apply--dark': dark }"
         >
           Apply <span aria-hidden="true">→</span>
         </RouterLink>
       </div>
+      <a
+        v-if="siteConfig.features.syllabusDownload && course.syllabusPdf"
+        :href="course.syllabusPdf"
+        class="course-card__syllabus"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Download syllabus
+      </a>
     </div>
   </article>
 </template>
@@ -344,28 +344,31 @@ const categoryShort = computed(() => {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-.course-card__btn {
-  width: 100%;
-  justify-content: center;
-  font-size: 0.875rem;
+.course-card__cta {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
 }
 
-.course-card__secondary {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.75rem;
+.course-card__btn,
+.course-card__apply {
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: center;
+  padding: 0 0.5rem;
   font-size: 0.8125rem;
   font-weight: 700;
-}
-
-.course-card__secondary a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .course-card__syllabus {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--color-primary);
   text-decoration: none;
 }
@@ -375,25 +378,33 @@ const categoryShort = computed(() => {
 }
 
 .course-card__apply {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  margin-left: auto;
+  background: var(--color-white);
+  border-color: var(--palette-orange-400);
   color: var(--palette-orange-600);
+  gap: 0.25rem;
+}
+
+.course-card__apply:hover {
+  background: var(--palette-orange-500);
+  border-color: var(--palette-orange-500);
+  color: var(--color-white);
   text-decoration: none;
 }
 
 .course-card__apply--dark {
-  color: var(--palette-orange-400);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: var(--color-white);
+}
+
+.course-card__apply--dark:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--palette-orange-400);
+  color: var(--color-white);
 }
 
 .course-card__apply span {
   transition: transform 0.2s var(--ease-out-expo);
-}
-
-.course-card__apply:hover {
-  text-decoration: none;
-  color: var(--palette-orange-550);
 }
 
 .course-card__apply:hover span {
