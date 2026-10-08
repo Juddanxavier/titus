@@ -45,9 +45,10 @@ svg {
   height: auto;
 }
 
-/* Readable line length on small screens */
-.section-intro,
-.prose {
+/* Readable line length on small screens — but never override a container's
+   max-width (`.container.prose` must stay capped at --container-max). */
+.section-intro:not(.container),
+.prose:not(.container) {
   max-width: 100%;
 }
 

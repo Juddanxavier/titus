@@ -15,7 +15,7 @@ export const images = {
     alt: "Montessori teacher-training classroom with organised materials",
   },
   about: {
-    src: "/images/abouttitus.jpeg",
+    src: "/images/abouttitus.webp",
     alt: "The Titus Global Montessori teacher training on campus",
   },
   studentExperience: {
@@ -48,7 +48,7 @@ export const images = {
   /** Page header backgrounds */
   pageHeaders: {
     courses: unsplash("1509062520806-31655974407d", 1920),
-    about: "/images/abouttitus.jpeg",
+    about: "/images/abouttitus.webp",
     admissions: unsplash("1434030216411-6b793fdae88c", 1920),
     curriculum: unsplash("1456513080510-7bf3a84b82f8", 1920),
     principal: unsplash("1577896851231-70ef188bf5f0", 1920),

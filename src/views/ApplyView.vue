@@ -1,8 +1,8 @@
 <template>
   <div class="apply-page">
     <PageHeader
-      title="Application form"
-      description="Complete all five steps to apply for a Montessori teacher-training programme."
+      title="Apply for Montessori teacher training"
+      description="Complete all five steps to apply for a Montessori teacher-training programme at our Poonamallee, Chennai campus."
       :background-image="images.pageHeaders.apply"
     />
 
@@ -61,7 +61,7 @@
         </aside>
 
         <!-- Main: the form -->
-        <main class="apply-main card">
+        <main id="application-form" class="apply-main card">
           <ApplicationForm
             ref="formRef"
             v-model:course-slug="selectedCourse"
@@ -119,6 +119,25 @@
         </aside>
       </div>
     </section>
+
+    <PageFaqSection
+      page="apply"
+      variant="white"
+      :related="[{ to: '/courses', label: 'All programmes' }]"
+    />
+
+    <CtaBanner
+      glass
+      eyebrow="Applications open"
+      title="Ready to apply?"
+      description="Fill in the form above, or message our admissions team if you still have questions about eligibility, documents, or batch dates."
+      show-contact
+      panel-label="Next step"
+      primary-label="Apply now"
+      primary-to="/apply#application-form"
+      secondary-label="Send a message"
+      secondary-to="/contact"
+    />
   </div>
 </template>
 
@@ -130,6 +149,8 @@ import { siteConfig } from "@/data/site";
 import { images } from "@/data/images";
 import PageHeader from "@/components/layout/PageHeader.vue";
 import ApplicationForm from "@/components/forms/ApplicationForm.vue";
+import CtaBanner from "@/components/sections/CtaBanner.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 
 const stepLabels = [
   "Personal details",

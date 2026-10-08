@@ -59,9 +59,9 @@ html.app-ready #app {
   --color-earth: var(--palette-purple-950);
   --color-warm: var(--palette-orange-400);
 
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-serif: "Sora", "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Sora", "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-heading: "Poppins", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display: "Poppins", "Manrope", system-ui, -apple-system, sans-serif;
   --font-weight-body: 500;
   --font-weight-heading: 700;
   --font-weight-subheading: 700;
@@ -119,8 +119,8 @@ h1,
 h2,
 h3,
 h4,
-.font-serif {
-  font-family: var(--font-serif);
+.font-heading {
+  font-family: var(--font-heading);
   font-weight: var(--font-weight-heading);
   line-height: var(--leading-heading);
   margin: 0;

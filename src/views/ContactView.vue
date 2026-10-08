@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHeader
-      title="Contact"
-      description="Reach our admissions team by email, phone, or WhatsApp."
+      title="Contact our Montessori admissions team"
+      description="Questions about Montessori training in Poonamallee, Chennai? Reach admissions by phone, WhatsApp, or the enquiry form below."
       :background-image="images.pageHeaders.contact"
     />
     <section class="section section--cream">
@@ -30,6 +30,15 @@
         </form>
       </div>
     </section>
+    <PageFaqSection
+      page="contact"
+      variant="white"
+      :related="[
+        { to: '/courses', label: 'All programmes' },
+        { to: '/admissions', label: 'Admissions' },
+        { to: '/apply', label: 'Apply now' },
+      ]"
+    />
   </div>
 </template>
 
@@ -38,6 +47,7 @@ import { reactive, ref } from "vue";
 import { images } from "@/data/images";
 import PageHeader from "@/components/layout/PageHeader.vue";
 import ContactMethods from "@/components/sections/ContactMethods.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 
 const form = reactive({ name: "", email: "", message: "" });
 const loading = ref(false);

@@ -23,7 +23,7 @@ defineProps({
 
 .faq-item {
   border-bottom: 1px solid var(--color-border);
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
 }
 
 .faq-list--dark .faq-item {
@@ -38,7 +38,7 @@ defineProps({
   cursor: pointer;
   list-style: none;
   min-height: 44px;
-  padding: 0.75rem 1.5rem 0.75rem 0;
+  padding: 1rem 2.25rem 1rem 0;
   position: relative;
 }
 
@@ -58,7 +58,8 @@ defineProps({
 }
 
 .faq-item__answer {
-  margin-top: 0.75rem;
+  margin-top: 0.875rem;
+  padding-bottom: 0.25rem;
   font-size: 0.875rem;
   color: var(--color-muted);
   line-height: 1.7;

@@ -7,6 +7,7 @@
         class="page-header__bg-img"
         :style="imageStyle"
         loading="eager"
+        fetchpriority="high"
         decoding="async"
       />
       <div class="page-header__img-veil" />

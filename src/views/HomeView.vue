@@ -10,7 +10,8 @@
           :alt="siteConfig.hero.imageAlt"
           class="hero__image"
           :style="heroImageStyle"
-          loading="eager" />
+          loading="eager"
+          fetchpriority="high" />
         <div class="hero__overlay" />
         <div class="hero__accent-bar" aria-hidden="true" />
       </div>
@@ -176,7 +177,7 @@
           light
           eyebrow="Institute"
           title="Why choose Titus"
-          description="Structured syllabi, face-to-face practice, and pathways from short certificates through advance diplomas — all on one campus." />
+          description="A structured syllabus, face-to-face practice, and pathways from short certificates through advance diplomas — all on one campus." />
         <div class="bento bento--features">
           <RevealOnScroll
             v-for="(f, i) in whyChoose"
@@ -242,6 +243,8 @@
 
     <EnrolmentPathSection />
 
+    <PageFaqSection page="home" variant="white" />
+
     <HomeProgrammeCta />
   </div>
 </template>
@@ -260,6 +263,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection.vue';
 import HowYouLearn from '@/components/sections/HowYouLearn.vue';
 import EnrolmentPathSection from '@/components/sections/EnrolmentPathSection.vue';
 import HomeProgrammeCta from '@/components/sections/HomeProgrammeCta.vue';
+import PageFaqSection from '@/components/sections/PageFaqSection.vue';
 import SectionHeader from '@/components/sections/SectionHeader.vue';
 import RevealOnScroll from '@/components/ui/RevealOnScroll.vue';
 import AnimatedCounter from '@/components/ui/AnimatedCounter.vue';
@@ -1049,7 +1053,7 @@ const approachItems = [
       rgba(36, 0, 70, 0.85) 0%,
       rgba(36, 0, 70, 0.75) 100%
     ),
-    url('/images/abouttitus.jpeg') center/cover no-repeat;
+    url('/images/abouttitus.webp') center/cover no-repeat;
   color: var(--color-white);
 }
 

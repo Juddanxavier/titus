@@ -2,7 +2,7 @@
   <div>
     <PageHeader
       title="Terms and refund policy"
-      description="Terms of enrolment, cancellation, and refund conditions."
+      description="Enrolment terms, cancellation, and refund conditions for Montessori training at Titus, Poonamallee, Chennai."
       :background-image="images.pageHeaders.terms"
     />
     <section class="section section--cream">
@@ -21,14 +21,28 @@
         <h2>Cancellation by institute</h2>
         <p>If a programme is cancelled by the institute, enrolled participants will receive a full refund of fees paid for that programme or the option to transfer to another batch.</p>
         <h2>Contact</h2>
-        <p>For questions about refunds, contact <a :href="`mailto:${siteConfig.contact.email}`">{{ siteConfig.contact.email }}</a>.</p>
+        <p v-if="hasRealEmail">For questions about refunds, contact <a :href="`mailto:${siteConfig.contact.email}`">{{ siteConfig.contact.email }}</a>.</p>
+        <p v-else>
+          For questions about refunds, call <a :href="`tel:${siteConfig.contact.phoneTel}`">{{ siteConfig.contact.phone }}</a>
+          or <RouterLink to="/contact">send a message</RouterLink>.
+        </p>
       </div>
     </section>
+    <PageFaqSection
+      page="terms"
+      variant="white"
+      :related="[
+        { to: '/privacy', label: 'Privacy policy' },
+        { to: '/admissions', label: 'Admissions' },
+      ]"
+    />
   </div>
 </template>
 
 <script setup>
-import { siteConfig } from "@/data/site";
+import { RouterLink } from "vue-router";
+import { siteConfig, hasRealEmail } from "@/data/site";
 import PageHeader from "@/components/layout/PageHeader.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 import { images } from "@/data/images";
 </script>

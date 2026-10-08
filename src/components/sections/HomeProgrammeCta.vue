@@ -3,7 +3,7 @@
     aria-label="Enrol at Titus"
     :eyebrow="`Next intake · ${siteConfig.announcement.batchDate}`"
     title="Take the next step toward your qualification"
-    description="Choose from thirteen on-campus programmes — certificates, diplomas, and advance diplomas. Download syllabi, compare eligibility, and apply when you are ready."
+    description="Choose from thirteen on-campus programmes — certificates, diplomas, and advance diplomas. Review the syllabus, compare eligibility, and apply when you are ready."
     :chips="['On-campus only', '13 programmes', '3 pathways']"
     chips-aria-label="Programme pathways"
     show-contact

@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHeader
-      title="FAQs"
-      description="Answers to common questions about admissions, on-campus courses, fees, and schedules."
+      title="Montessori training FAQs"
+      description="Answers to common questions about admissions, fees, schedules, and on-campus Montessori training in Poonamallee, Chennai."
       :background-image="images.pageHeaders.faqs"
     />
     <section class="section section--cream">
@@ -21,6 +21,16 @@
           </button>
         </div>
         <FaqList :items="filteredFaqs" />
+        <p class="faq-explore">
+          <span>Explore:</span>
+          <RouterLink to="/courses">All programmes</RouterLink>
+          <span aria-hidden="true">·</span>
+          <RouterLink to="/admissions">Admissions</RouterLink>
+          <span aria-hidden="true">·</span>
+          <RouterLink to="/student-experience">Student experience</RouterLink>
+          <span aria-hidden="true">·</span>
+          <RouterLink to="/contact">Contact admissions</RouterLink>
+        </p>
       </div>
     </section>
     <CtaBanner
@@ -39,11 +49,16 @@
 
 <script setup>
 import { computed, ref } from "vue";
+import { RouterLink } from "vue-router";
 import { faqs, faqCategories } from "@/data/faqs";
 import { images } from "@/data/images";
+import { useFaqSchema } from "@/composables/useFaqSchema";
 import PageHeader from "@/components/layout/PageHeader.vue";
 import FaqList from "@/components/sections/FaqList.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+
+// Every question on this page (all categories) is advertised as one FAQPage.
+useFaqSchema(faqs, { id: "faq-page-schema" });
 
 const activeCategory = ref("admissions");
 const filteredFaqs = computed(() => faqs.filter((f) => f.category === activeCategory.value));
@@ -74,5 +89,24 @@ const filteredFaqs = computed(() => faqs.filter((f) => f.category === activeCate
   background: var(--color-muted-bg);
   color: var(--color-navy);
   border-color: var(--color-primary);
+}
+.faq-explore {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2.25rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+.faq-explore a {
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.faq-explore a:hover {
+  text-decoration: underline;
 }
 </style>

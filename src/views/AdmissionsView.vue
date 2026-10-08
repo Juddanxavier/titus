@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHeader
-      title="Admissions"
-      description="Everything you need to know about eligibility, the application process, fees, and required documents."
+      title="Admissions for Montessori training"
+      description="Everything you need to know about eligibility, application, fees, and documents for on-campus Montessori teacher training in Poonamallee, Chennai."
       :background-image="images.pageHeaders.admissions"
     />
     <section class="section section--cream">
@@ -38,6 +38,12 @@
         <p><RouterLink to="/terms">Read full terms and refund policy</RouterLink></p>
       </div>
     </section>
+    <PageFaqSection
+      page="admissions"
+      variant="white"
+      :related="[{ to: '/courses', label: 'All programmes' }]"
+    />
+
     <CtaBanner
       eyebrow="Applications open"
       title="Start your application"
@@ -58,6 +64,7 @@ import { images } from "@/data/images";
 import PageHeader from "@/components/layout/PageHeader.vue";
 import Timeline from "@/components/sections/Timeline.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 </script>
 
 <style scoped>

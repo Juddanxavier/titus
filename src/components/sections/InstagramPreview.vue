@@ -1,5 +1,5 @@
 <template>
-  <section class="section section--cream" aria-label="Instagram feed">
+  <section v-if="hasRealInstagram" class="section section--cream" aria-label="Instagram feed">
     <div class="container">
       <SectionHeader
         :eyebrow="siteConfig.instagram.title"
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { siteConfig } from "@/data/site";
+import { siteConfig, hasRealInstagram } from "@/data/site";
 import { studentGallery } from "@/data/gallery";
 import SectionHeader from "@/components/sections/SectionHeader.vue";
 

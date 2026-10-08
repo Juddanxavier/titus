@@ -1,5 +1,9 @@
 <template>
-  <section class="pre-footer-cta" :aria-label="ariaLabel">
+  <section
+    class="pre-footer-cta"
+    :class="{ 'pre-footer-cta--glass': glass }"
+    :aria-label="ariaLabel"
+  >
     <div class="pre-footer-cta__accent" aria-hidden="true" />
     <div class="pre-footer-cta__grid" aria-hidden="true" />
     <div class="pre-footer-cta__glow pre-footer-cta__glow--1" aria-hidden="true" />
@@ -21,7 +25,12 @@
         </p>
       </RevealOnScroll>
 
-      <RevealOnScroll variant="up" :delay="90" class="pre-footer-cta__panel card">
+      <RevealOnScroll
+        variant="up"
+        :delay="90"
+        class="pre-footer-cta__panel card"
+        :class="{ 'pre-footer-cta__panel--glass': glass }"
+      >
         <p v-if="panelLabel" class="pre-footer-cta__panel-label">{{ panelLabel }}</p>
         <div class="pre-footer-cta__actions">
           <RouterLink v-if="primaryTo" :to="primaryTo" class="btn btn--gold btn--lg pre-footer-cta__btn">
@@ -30,7 +39,8 @@
           <RouterLink
             v-if="secondaryTo"
             :to="secondaryTo"
-            class="btn btn--outline btn--lg pre-footer-cta__btn"
+            class="btn btn--lg pre-footer-cta__btn"
+            :class="glass ? 'btn--outline-light' : 'btn--outline'"
           >
             {{ secondaryLabel }}
           </RouterLink>
@@ -50,6 +60,8 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll.vue";
 
 defineProps({
   ariaLabel: { type: String, default: "Take the next step" },
+  /** Frosted-glass panel instead of the solid white card. */
+  glass: { type: Boolean, default: false },
   eyebrow: { type: String, default: "" },
   title: { type: String, required: true },
   description: { type: String, default: "" },
@@ -226,6 +238,53 @@ defineProps({
   .pre-footer-cta__panel {
     padding: 1.65rem 1.75rem;
   }
+}
+
+/* Glassmorphic variant: frosted panel floating over the gradient backdrop. */
+.pre-footer-cta__panel--glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow:
+    0 24px 48px rgba(14, 6, 28, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.pre-footer-cta__panel--glass .pre-footer-cta__panel-label {
+  color: var(--palette-orange-400);
+}
+
+.pre-footer-cta--glass .pre-footer-cta__actions {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pre-footer-cta--glass .pre-footer-cta__btn {
+  width: auto;
+  flex: 1 1 9rem;
+  min-width: 8.5rem;
+}
+
+@media (max-width: 480px) {
+  .pre-footer-cta--glass .pre-footer-cta__actions {
+    gap: 0.5rem;
+  }
+
+  .pre-footer-cta--glass .pre-footer-cta__btn {
+    min-width: 0;
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+.pre-footer-cta--glass .pre-footer-cta__tertiary {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pre-footer-cta--glass .pre-footer-cta__tertiary:hover {
+  color: var(--palette-orange-400);
 }
 
 .pre-footer-cta__panel-label {

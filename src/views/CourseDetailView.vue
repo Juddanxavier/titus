@@ -106,6 +106,7 @@ import { images } from "@/data/images";
 import ModuleList from "@/components/sections/ModuleList.vue";
 import FaqList from "@/components/sections/FaqList.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+import { useFaqSchema } from "@/composables/useFaqSchema";
 
 const route = useRoute();
 const course = computed(() => {
@@ -120,9 +121,37 @@ const courseModules = computed(() => {
   return curriculumModules.filter((m) => ids.includes(m.id));
 });
 
-const courseFaqs = computed(() =>
-  (course.value?.faqs || []).map((f, i) => ({ id: `cf-${i}`, ...f }))
-);
+const courseFaqs = computed(() => {
+  const c = course.value;
+  if (!c) return [];
+  const sharedFaqs = (c.faqs || []).map((f, i) => ({ id: `cf-${i}`, ...f }));
+  const detailFaqs = [
+    {
+      id: "cf-duration",
+      question: `How long is ${c.name} and how is it delivered?`,
+      answer: `The programme runs for ${c.duration} with ${String(c.format || "on-campus").toLowerCase()} sessions in English at our Poonamallee campus. There is no online or hybrid option.`,
+    },
+    {
+      id: "cf-eligibility",
+      question: "What are the eligibility requirements?",
+      answer: `Entry requirement for this programme: ${c.eligibility}. Admissions verifies your education documents before you enrol.`,
+    },
+    {
+      id: "cf-fees",
+      question: "How much does the programme cost?",
+      answer: `${c.fees?.note || "Contact admissions for current fees."} Payment options: ${(c.paymentOptions || []).join(", ")}.`,
+    },
+    {
+      id: "cf-batch",
+      question: "When does the next batch start?",
+      answer: `The next intake begins ${c.nextBatch}. Confirm the start date, seat availability, and the fee schedule with admissions before you apply.`,
+    },
+  ];
+  return [...sharedFaqs, ...detailFaqs];
+});
+
+// Structured data for the "Frequently asked questions" block above.
+useFaqSchema(courseFaqs, { id: "faq-page-schema" });
 </script>
 
 <style scoped>

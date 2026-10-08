@@ -24,7 +24,7 @@
         <p class="footer__name">{{ siteConfig.instituteFullName }}</p>
         <p class="footer__tagline">{{ siteConfig.tagline }}</p>
         <div class="footer__contact">
-          <p><a :href="`mailto:${siteConfig.contact.email}`">{{ siteConfig.contact.email }}</a></p>
+          <p v-if="hasRealEmail"><a :href="`mailto:${siteConfig.contact.email}`">{{ siteConfig.contact.email }}</a></p>
           <p><a :href="`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`">{{ siteConfig.contact.phone }}</a></p>
           <p><a :href="siteConfig.contact.whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
           <p>{{ siteConfig.contact.address }}</p>
@@ -63,8 +63,8 @@
 
     <div class="container footer__bottom">
       <p>© {{ year }} {{ siteConfig.instituteName }}. All rights reserved.</p>
-      <div class="footer__social">
-        <a v-for="s in siteConfig.social" :key="s.label" :href="s.url">{{ s.label }}</a>
+      <div v-if="publishedSocial.length" class="footer__social">
+        <a v-for="s in publishedSocial" :key="s.label" :href="s.url">{{ s.label }}</a>
       </div>
     </div>
   </footer>
@@ -72,7 +72,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { siteConfig } from "@/data/site";
+import { siteConfig, hasRealEmail, publishedSocial } from "@/data/site";
 
 const year = new Date().getFullYear();
 const newsletterEmail = ref("");

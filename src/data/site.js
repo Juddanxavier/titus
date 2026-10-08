@@ -8,7 +8,7 @@ export const siteConfig = {
   instituteName: 'The Titus Global',
   instituteFullName: 'The Titus Global Montessori Teacher Training Academy',
   logo: {
-    src: '/images/logo.png',
+    src: '/images/logo.webp',
     alt: 'The Titus Global Montessori Teacher Training Academy',
   },
   tagline:
@@ -32,10 +32,13 @@ export const siteConfig = {
     ctaHref: '/apply',
   },
   contact: {
+    // Reserved placeholder. Publishing it is worse than omitting it — mail to
+    // example.com bounces — so the UI hides it (see `hasRealEmail`) until the
+    // institute supplies a real admissions address here.
     email: 'admissions@example.com',
-    phone: '+91 95000 96930',
-    phoneTel: '+919500096930',
-    whatsapp: 'https://wa.me/919500096930',
+    phone: '+91 94451 57092',
+    phoneTel: '+919445157092',
+    whatsapp: 'https://wa.me/919445157092',
     address: 'No.162, Sundar Nagar, (Opposite to spartankids pre school) poonamallee, Chennai.600056',
     hours: 'Monday to Friday, 9:00 am to 5:00 pm',
     counsellorHours: 'Admissions counselling: 9:00 am – 6:00 pm (editable)',
@@ -54,14 +57,14 @@ export const siteConfig = {
   },
   brochureUrl: '/downloads/course-brochure.pdf',
   hero: {
-    image: '/images/hero.png',
+    image: '/images/hero.webp',
     imageAlt: 'Montessori teacher training at The Titus Global campus',
     badge: 'On-campus teacher training',
     title: 'Become a Montessori',
     titleHighlight: 'educator',
     titleSuffix: '',
     subtitle:
-      'From 3-month certificates in phonics and daycare management to one-year diplomas and advance diplomas in Montessori, nursery, and primary education — all delivered on campus with a downloadable syllabus for every programme.',
+      'From 3-month certificates in phonics and daycare management to one-year diplomas and advance diplomas in Montessori, nursery, and primary education — all taught on campus in Poonamallee, Chennai, with a syllabus for every programme.',
     rating: {
       score: '[4.X]',
       label: '[X]+ trainees enrolled',
@@ -99,10 +102,9 @@ export const siteConfig = {
     eyebrow: 'Our impact',
     title: 'One campus. Thirteen qualifications.',
     description:
-      'From three-month certificates to one-year advance diplomas, Titus keeps early-years training in one place — face-to-face sessions, materials practice, and syllabi you can download before you apply.',
+      'From three-month certificates to one-year advance diplomas, Titus keeps early-years training in one place — face-to-face sessions, materials practice, and a syllabus you can read before you apply.',
     highlights: [
       { label: 'Place', value: 'On-campus only' },
-      { label: 'Syllabi', value: 'Download per programme' },
       { label: 'Duration range', value: '3 months – 1 year' },
     ],
     cta: { label: 'Explore all programmes', to: '/courses' },
@@ -141,3 +143,20 @@ export const siteConfig = {
     text: 'Whether you are starting with a 10th-pass certificate or deepening practice with a one-year advance diploma, Titus offers a clear on-campus route. Compare durations and eligibility on our courses page, read overviews on each programme page, and download the full syllabus before you apply.',
   },
 };
+
+/**
+ * Publication guards for contact details.
+ *
+ * Swap the placeholder values above for real ones and these flip on by
+ * themselves — no component changes needed.
+ */
+export const hasRealEmail = !/@example\.com$/i.test(siteConfig.contact.email);
+
+export const publishedSocial = siteConfig.social.filter((item) =>
+  /^https?:\/\//.test(item.url || ''),
+);
+
+/** The Instagram teaser only renders once `profileUrl` is a real profile. */
+export const hasRealInstagram = /^https?:\/\//.test(
+  siteConfig.instagram.profileUrl || '',
+);

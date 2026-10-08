@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHeader
-      title="Student experience"
-      description="What to expect during your Montessori teacher-training journey."
+      title="Student experience on a Montessori course"
+      description="What to expect during your on-campus Montessori teacher-training journey in Poonamallee, Chennai."
       :background-image="images.pageHeaders.studentExperience"
     />
     <section class="section section--cream">
@@ -40,6 +40,15 @@
         </div>
       </div>
     </section>
+    <PageFaqSection
+      page="student-experience"
+      variant="white"
+      :related="[
+        { to: '/admissions', label: 'Admissions' },
+        { to: '/about', label: 'About the institute' },
+      ]"
+    />
+
     <CtaBanner
       eyebrow="Join a cohort"
       title="Experience training on campus"
@@ -63,6 +72,7 @@ import SectionHeader from "@/components/sections/SectionHeader.vue";
 import ParallaxImage from "@/components/ui/ParallaxImage.vue";
 import RevealOnScroll from "@/components/ui/RevealOnScroll.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 
 const experiences = [
   { title: "Classroom practice", text: "Hands-on sessions with Montessori materials in a prepared training environment." },

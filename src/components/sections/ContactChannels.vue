@@ -1,7 +1,11 @@
 <template>
   <section class="channels" aria-label="Contact options">
     <div class="container channels__grid">
-      <a :href="`mailto:${siteConfig.contact.email}`" class="channels__card card card-lift">
+      <a
+        v-if="hasRealEmail"
+        :href="`mailto:${siteConfig.contact.email}`"
+        class="channels__card card card-lift"
+      >
         <span class="channels__icon" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
             <path d="M4 6h16v12H4z" /><path d="m4 7 8 6 8-6" />
@@ -13,6 +17,18 @@
           <span class="channels__cta">Get in touch →</span>
         </div>
       </a>
+      <RouterLink v-else to="/contact" class="channels__card card card-lift">
+        <span class="channels__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+        </span>
+        <div>
+          <p class="channels__title">Send an enquiry</p>
+          <p class="channels__text">Message admissions any time</p>
+          <span class="channels__cta">Get in touch →</span>
+        </div>
+      </RouterLink>
       <a
         :href="siteConfig.contact.whatsapp"
         class="channels__card card card-lift"
@@ -47,7 +63,8 @@
 </template>
 
 <script setup>
-import { siteConfig } from "@/data/site";
+import { RouterLink } from "vue-router";
+import { siteConfig, hasRealEmail } from "@/data/site";
 </script>
 
 <style scoped>

@@ -16,11 +16,11 @@
       <span class="course-card__duration-label">on campus</span>
     </div>
 
-    <h3 class="course-card__title">
+    <component :is="headingLevel" class="course-card__title">
       <RouterLink :to="`/courses/${course.slug}`" class="course-card__title-link">
         {{ course.name }}
       </RouterLink>
-    </h3>
+    </component>
 
     <p class="course-card__desc">{{ course.shortDescription }}</p>
 
@@ -82,6 +82,8 @@ const props = defineProps({
   course: { type: Object, required: true },
   dark: { type: Boolean, default: false },
   featured: { type: Boolean, default: false },
+  /** h2 on listing pages (H1 → H2 hierarchy), h3 when nested under a section H2. */
+  headingLevel: { type: String, default: "h3" },
 });
 
 const categoryShort = computed(() => {

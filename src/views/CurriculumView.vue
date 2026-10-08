@@ -1,8 +1,8 @@
 <template>
   <div class="curriculum-page">
     <PageHeader
-      title="Curriculum"
-      description="Nine interconnected themes across our Montessori and early-years programmes — from philosophy to supervised classroom practice."
+      title="Montessori training curriculum"
+      description="Nine interconnected themes across our Montessori and early-years programmes in Poonamallee, Chennai — from philosophy to supervised classroom practice."
       :background-image="images.pageHeaders.curriculum"
     />
 
@@ -15,6 +15,21 @@
             <p class="curriculum-hero__text">
               Every programme at Titus builds on these modules. Depth and emphasis differ by certificate,
               diploma, or advance diploma — your official syllabus shows exact hours and assessments.
+            </p>
+            <p class="curriculum-hero__source">
+              Built on the
+              <a
+                href="https://en.wikipedia.org/wiki/Montessori_education"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Montessori method</a>
+              as developed by
+              <a
+                href="https://en.wikipedia.org/wiki/Maria_Montessori"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Maria Montessori</a>
+              — adapted to Indian early-years classrooms.
             </p>
           </div>
           <dl class="curriculum-hero__stats">
@@ -64,7 +79,7 @@
         <RevealOnScroll variant="up" class="curriculum-bridge__layout">
           <div class="curriculum-bridge__copy">
             <p class="curriculum-bridge__eyebrow">Programme-specific detail</p>
-            <h2 class="curriculum-bridge__title">Syllabi define the exact path for your qualification</h2>
+            <h2 class="curriculum-bridge__title">The syllabus defines the exact path for your qualification</h2>
             <p class="curriculum-bridge__text">
               These modules describe shared themes. Each NCVTC syllabus lists module coverage, on-campus
               sessions, and assessment — download yours before you apply.
@@ -89,10 +104,12 @@
       </div>
     </section>
 
+    <PageFaqSection page="curriculum" variant="cream" />
+
     <CtaBanner
       eyebrow="Ready to start?"
       title="Find the programme that fits your goals"
-      description="Compare durations, eligibility, and syllabi — then apply for the next on-campus intake."
+      description="Compare durations, eligibility, and the syllabus — then apply for the next on-campus intake."
       show-contact
       panel-label="Enrol"
       primary-label="Apply now"
@@ -111,6 +128,7 @@ import PageHeader from "@/components/layout/PageHeader.vue";
 import SectionHeader from "@/components/sections/SectionHeader.vue";
 import CurriculumModuleGrid from "@/components/sections/CurriculumModuleGrid.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 import RevealOnScroll from "@/components/ui/RevealOnScroll.vue";
 
 const syllabusPoints = [
@@ -182,6 +200,21 @@ const syllabusPoints = [
   font-size: 0.9375rem;
   line-height: 1.65;
   color: var(--color-muted);
+}
+
+.curriculum-hero__source {
+  margin-top: 0.75rem;
+  max-width: 36rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.curriculum-hero__source a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .curriculum-hero__stats {

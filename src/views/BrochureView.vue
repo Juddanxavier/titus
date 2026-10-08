@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHeader
-      title="Download brochure"
-      description="Get an overview of our Montessori teacher-training programmes."
+      title="Download our Montessori course brochure"
+      description="An overview of our on-campus Montessori teacher-training programmes in Poonamallee, Chennai — levels, durations, and eligibility."
       :background-image="images.pageHeaders.brochure"
     />
     <section class="section section--cream">
@@ -39,10 +39,19 @@
         </form>
       </div>
     </section>
+    <PageFaqSection
+      page="brochure"
+      variant="white"
+      :related="[
+        { to: '/admissions', label: 'Admissions' },
+        { to: '/contact', label: 'Contact admissions' },
+      ]"
+    />
+
     <CtaBanner
       eyebrow="Ready to commit?"
       title="Apply when you are ready"
-      description="Use the brochure as a starting point — then compare syllabi and submit your application for the next intake."
+      description="Use the brochure as a starting point — then review the syllabus and submit your application for the next intake."
       panel-label="Enrol"
       primary-label="Apply now"
       primary-to="/apply"
@@ -59,6 +68,7 @@ import { courses } from "@/data/courses";
 import { images } from "@/data/images";
 import PageHeader from "@/components/layout/PageHeader.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 
 const form = reactive({ name: "", email: "", courseInterest: "" });
 const loading = ref(false);

@@ -1,6 +1,6 @@
 # Titus — Course programmes
 
-On-campus training. Download syllabi from the links below (files in `/public/courses/`).
+On-campus training. Download the syllabus for each programme from the links below (files in `/public/courses/`).
 
 | Programme | Duration | Syllabus |
 | --- | --- | --- |

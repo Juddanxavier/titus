@@ -6,7 +6,7 @@ export const principal = {
   title: "Founder & Principal",
   institute: "The Titus Global Montessori Teacher Training Academy",
   greeting: "A message from our founder",
-  imageSrc: "/images/pricipal.jpg",
+  imageSrc: "/images/pricipal.webp",
   imageAlt: "Mrs. Gayathiri Sangeetha, Founder & Principal of The Titus Global",
   intro:
     "Mrs. Gayathiri Sangeetha, the founder of Spartankids, is a passionate educator and visionary leader committed to transforming early childhood education.",

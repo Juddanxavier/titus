@@ -2,7 +2,7 @@
   <div>
     <PageHeader
       title="Privacy policy"
-      description="How we collect, use, and protect your personal information."
+      description="How The Titus Global Montessori Teacher Training Academy in Poonamallee, Chennai collects, uses, and protects the personal information you share with us."
       :background-image="images.pageHeaders.privacy"
     />
     <section class="section section--cream">
@@ -27,14 +27,28 @@
         <h2>Data retention</h2>
         <p>We retain application data for as long as necessary to process your application and meet legal requirements. Contact us to request access or deletion where applicable.</p>
         <h2>Contact</h2>
-        <p>For privacy enquiries, email <a :href="`mailto:${siteConfig.contact.email}`">{{ siteConfig.contact.email }}</a>.</p>
+        <p v-if="hasRealEmail">For privacy enquiries, email <a :href="`mailto:${siteConfig.contact.email}`">{{ siteConfig.contact.email }}</a>.</p>
+        <p v-else>
+          For privacy enquiries, call <a :href="`tel:${siteConfig.contact.phoneTel}`">{{ siteConfig.contact.phone }}</a>
+          or <RouterLink to="/contact">send a message</RouterLink>.
+        </p>
       </div>
     </section>
+    <PageFaqSection
+      page="privacy"
+      variant="white"
+      :related="[
+        { to: '/terms', label: 'Terms & refunds' },
+        { to: '/admissions', label: 'Admissions' },
+      ]"
+    />
   </div>
 </template>
 
 <script setup>
-import { siteConfig } from "@/data/site";
+import { RouterLink } from "vue-router";
+import { siteConfig, hasRealEmail } from "@/data/site";
 import PageHeader from "@/components/layout/PageHeader.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 import { images } from "@/data/images";
 </script>

@@ -2,8 +2,8 @@
   <div>
     <PageHeader
       eyebrow="The institute"
-      title="About us"
-      description="The Titus Global prepares educators on one campus. Certificates, diplomas, and advance diplomas, each with a syllabus you can read before you apply."
+      title="About our Montessori training institute"
+      description="The Titus Global prepares Montessori educators on one campus in Poonamallee, Chennai. Certificates, diplomas, and advance diplomas — each with a syllabus you can read before you apply."
       :background-image="images.pageHeaders.about"
     />
 
@@ -195,6 +195,8 @@
       </div>
     </section>
 
+    <PageFaqSection page="about" variant="cream" />
+
     <CtaBanner
       eyebrow="Programmes"
       title="Explore our training programmes"
@@ -218,6 +220,7 @@ import { courses } from "@/data/courses";
 import PageHeader from "@/components/layout/PageHeader.vue";
 import SectionHeader from "@/components/sections/SectionHeader.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 import ParallaxImage from "@/components/ui/ParallaxImage.vue";
 import ParallaxStrip from "@/components/sections/ParallaxStrip.vue";
 import RevealOnScroll from "@/components/ui/RevealOnScroll.vue";

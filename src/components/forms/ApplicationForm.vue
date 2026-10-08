@@ -133,7 +133,7 @@
         <fieldset v-show="step === 5" class="form-step">
           <legend class="sr-only">Review and submit</legend>
           <div class="review card">
-            <h3>Review your application</h3>
+            <h2>Review your application</h2>
             <dl class="review__list">
               <div><dt>Name</dt><dd>{{ form.fullName }}</dd></div>
               <div><dt>Email</dt><dd>{{ form.email }}</dd></div>
@@ -362,7 +362,7 @@ input[type="file"] { max-width: 100%; }
   flex-wrap: wrap;
 }
 .review { padding: 1.5rem; margin-bottom: 1.5rem; }
-.review h3 {
+.review h2 {
   font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 600;

@@ -1,8 +1,8 @@
 <template>
   <div class="courses-page">
     <PageHeader
-      title="Our programmes"
-      description="Thirteen on-campus qualifications — filter by certificate, diploma, or advance diploma. Every programme includes a syllabus you can download before you apply."
+      title="Montessori teacher training programmes"
+      description="Thirteen on-campus Montessori and early-years qualifications in Poonamallee, Chennai — filter by certificate, diploma, or advance diploma. Every programme has a syllabus you can read first."
       :background-image="images.pageHeaders.courses"
     />
 
@@ -73,7 +73,7 @@
             :delay="(index % 6) * 50"
             class="courses-grid__cell"
           >
-            <CourseCard :course="course" />
+            <CourseCard :course="course" heading-level="h2" />
           </RevealOnScroll>
         </div>
 
@@ -84,6 +84,8 @@
 
       </div>
     </section>
+
+    <PageFaqSection page="courses" variant="white" />
 
     <CtaBanner
       eyebrow="Admissions support"
@@ -109,6 +111,7 @@ import { siteConfig } from "@/data/site";
 import PageHeader from "@/components/layout/PageHeader.vue";
 import CourseCard from "@/components/sections/CourseCard.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 import RevealOnScroll from "@/components/ui/RevealOnScroll.vue";
 
 const route = useRoute();

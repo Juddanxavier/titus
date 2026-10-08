@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHeader
-      title="Career opportunities"
-      description="Paths that graduates commonly pursue — without guarantees of employment or placement."
+      title="Careers after Montessori training"
+      description="Career paths that Montessori and early-years graduates commonly pursue in Chennai — without guarantees of employment or placement."
       :background-image="images.pageHeaders.careers"
     />
     <section class="section section--cream">
@@ -28,6 +28,15 @@
         </ul>
       </div>
     </section>
+    <PageFaqSection
+      page="careers"
+      variant="white"
+      :related="[
+        { to: '/admissions', label: 'Admissions' },
+        { to: '/student-experience', label: 'Student experience' },
+      ]"
+    />
+
     <CtaBanner
       eyebrow="Your career in education"
       title="Begin your training journey"
@@ -44,4 +53,5 @@
 import { images } from "@/data/images";
 import PageHeader from "@/components/layout/PageHeader.vue";
 import CtaBanner from "@/components/sections/CtaBanner.vue";
+import PageFaqSection from "@/components/sections/PageFaqSection.vue";
 </script>
